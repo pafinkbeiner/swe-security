@@ -1,8 +1,46 @@
 %!TEX root = ../dokumentation.tex
 
-\chapter{Einleitung}
+\chapter{Einleitung}\label{Einleitung}
 
-\section{Einführung in verteilte Systeme}
+In der Vergangenheit kam es bei großen Unternehmen wie Facebook, Microsoft, Visa- und
+MasterCard zum Teil mehrmals zu einer Entwendung von Kundendaten. Durch Attacken wie
+Buffer Overflows, Viren oder andere Angriffsvektoren werden Maschinen und Benutzer auf
+der ganzen Welt bedroht. Die Entwicklung des Internets legte ein besonderes Augenmerk auf
+den Bereich der Netzwerksicherheit. Trotz vieler Bemühungen von IT-Sicherheitsexperten
+und dem vorhanden sein leistungsfähiger Sicherheitsprotokolle und kryptografischen
+Modulen kann ein vollständig sicheres System immer noch nicht gewährleistet werden.
+Oftmals ist in dem Zusammenhang mit Daten Leaks nicht unbedingt die Kommunikation
+zwischen Client und Server, sondern die eigentliche Software am Datenverlust maßgeblich
+beteiligt. Die Gründe für das Schreiben unsicherer Software liegen oftmals an der mangelnden
+Wahrnehmung von Fehlern seitens der Softwareentwickler oder der mangelnden
+Verwendung von konkreten Mustern (Patterns) zur Lösung von Sicherheitsproblemen. In der
+Software Entwicklung wird oftmals durch Frameworks bereits zur Entwicklungszeit die
+Möglichkeit mitgeliefert bestimmte Sicherheitsmechanismen zu verwenden. Der Entwickler
+hat die Aufgabe diese verstehen und richtig einsetzten zu können. Ein deutlicher Trend ist
+momentan im Autonomisierungsbereich zu beobachten. Mit dem steigenden Einsatz von
+Software in z.B. Haushaltsgeräten wird sich das Thema Sicherheit noch verschärfen. 
+\newline
+Im Rahmen der Projektarbeit wird die Frage beantwortet, wie
+verteilte Systeme sicher gestaltet und implementiert werden können. 
+Zunächst sollen die Begriffe Sicherheit und verteilte Systeme definiert werden, 
+um einen ersten Einblick in das Thema zu bieten. 
+Hinführen soll die Einführung auf die Beantwortung der Frage, 
+was vor wem im System geschützt werden muss. Auf dieser Basis kann beschrieben werden, 
+was es für Angriffe auf verteilte Systeme gibt. 
+Welche Sicherheitslücken können von Angreifern ausgenutzt werden? 
+Weiterhin sollen Anforderungen an verteilte Systeme abgeleitet und konkret definiert werden. 
+Welche Sicherheitsdienste werden benötigt, um diese Anforderungen umzusetzen? 
+Neben einer allgemeinen Definition dieser Dienste soll auch ein konkreter Vergleich mit der tatsächlichen Praxis erfolgen. 
+Wie erfolgt die Sicherstellung eines sicheren Systems in der Praxis? 
+Für den Vergleich kann ein Beispiel herangezogen werden. 
+Um zu zeigen, dass das theoretisch erläuterte funktioniert, soll ein Prototyp entwickelt werden. 
+Der Prototyp soll abstrakt einige Sicherheitsdienste implementieren und so das zuvor erklärte demonstrieren. 
+Zur Umsetzung der Prototypen sollen geeignete Technologien und Architekturen gesucht und evaluiert werden, 
+sodass der beste und einfachste Ansatz ausgewählt wird.
+
+
+\section{Einführung in verteilte Systeme}\label{EinfuerungInVerteilteSysteme}
+
 Für den Begriff \glqq verteilte Systeme \grqq{} liegt keine eindeutige Definition vor. Verschiedene Autoren definieren den Begriff der verteilten Systeme leicht unterschiedlich.
 Nach A. Tanenbaum aus dem Jahre 2003 ist ein verteiltes System eine Menge voneinander unabhängiger Computer, die dem Benutzer wie ein einzelnes kohärentes System
 erscheinen \cite{Mandl.2009}. Jeder Baustein kann seine Instanz auf unterschiedlichen oder aber auch auf dem gleichen Rechner haben. Die Systeme stellen je eigene Prozesse dar, die keinen gemeinsamen
@@ -19,3 +57,28 @@ Die Autonomität der Systeme bedingt eine höhere Verfügbarkeit. Fällt ein Sys
 einen weiteren Vorteil dar
 
 \section{Sicherheit}
+
+\section{Sicherheit}\label{Sicherheit}
+In diesem Abschnitt wird genauer auf den Sachverhalt eingegangen welche Gefahren \ac*{IT}-Systemen drohen.
+Eine Konkretisierte Betrachtung der Angriffsvektoren wird in \autoref{Sicherheitsluecken} durchgeführt.
+IT-Sicherheit ist ein Teil der Informationssicherheit und befasst sich mit der Planung, Maßnahmen und Kontrollen, die dem Schutz der IT dienen.
+IT-Sicherheit reicht dabei vom Schutz einzelner Dateien bis hin zur Absicherung von Rechenzentren und Cloud-Diensten. 
+Eine genaue Einteilung der Bedrohungen und der dazugehörigen Schutzziele für Systeme in der Informationstechnik sieht so aus:
+\\\\
+\begin{tabular}[h]{l|c}
+    Bedrohungen & Schutzziele \\
+    \hline
+    Unbefugter Informationsgewinn & Verlust der Vertraulichkeit \\
+    Unbefugte Modifikation von Informationen & Verlust der Integrität \\
+    Unbefugte Beeinträchtigung der Funktionalität & Verlust der Verfügbarkeit \\
+\end{tabular}
+
+
+Vertraulichkeit = Informationen werden nur Berechtigten bekannt.
+\newline
+Integrität = Informationen sind richtig, vollständig und aktuell
+oder aber dies ist erkennbar nicht der Fall.
+\newline
+Verfügbarkeit = Informationen sind dort und dann zugänglich,
+wo und wann sie von Berechtigten gebraucht werden.
+>>>>>>> 2eb122940a7cf50ce66fe0acf5f3155f7890afc9
