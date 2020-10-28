@@ -56,29 +56,47 @@ Allgemein gibt es für verteilte Systeme jedoch einige Vorteile gegenüber herk�
 Die Autonomität der Systeme bedingt eine höhere Verfügbarkeit. Fällt ein Syste aus, so sind die anderen hiervon nicht betroffen und können problemlos weiterarbeiten. Die Skalierbarkeit stellt
 einen weiteren Vorteil dar
 
-\section{Sicherheit}
-
 \section{Sicherheit}\label{Sicherheit}
 In diesem Abschnitt wird genauer auf den Sachverhalt eingegangen welche Gefahren \ac*{IT}-Systemen drohen.
 Eine Konkretisierte Betrachtung der Angriffsvektoren wird in \autoref{Sicherheitsluecken} durchgeführt.
 IT-Sicherheit ist ein Teil der Informationssicherheit und befasst sich mit der Planung, Maßnahmen und Kontrollen, die dem Schutz der IT dienen.
-IT-Sicherheit reicht dabei vom Schutz einzelner Dateien bis hin zur Absicherung von Rechenzentren und Cloud-Diensten. 
-Eine genaue Einteilung der Bedrohungen und der dazugehörigen Schutzziele für Systeme in der Informationstechnik sieht so aus:
-\\\\
-\begin{tabular}[h]{l|c}
-    Bedrohungen & Schutzziele \\
-    \hline
-    Unbefugter Informationsgewinn & Verlust der Vertraulichkeit \\
-    Unbefugte Modifikation von Informationen & Verlust der Integrität \\
-    Unbefugte Beeinträchtigung der Funktionalität & Verlust der Verfügbarkeit \\
-\end{tabular}
+Sie reicht dabei vom Schutz einzelner Dateien bis hin zur Absicherung von Rechenzentren und Cloud-Diensten. 
+Der Bereich von IT-Sicherheit ist grob in vier Teilbereiche einzugliedern: 
+
+\begin{description}
+    \item 1. Schutz von Informationen und IT-Systemen
+    \item 2. Schutz von Vernetzungen
+    \item 3. Schutz des Benutzers
+    \item 4. Verhinderung von Schwachstellen
+\end{description}
+TODO: QUELLE
+
+\textbf{Schutz von Informationen und IT-Systemen}
+
+Das auch als "Endpoint Security" bezeichnete Grundkonzept der IT-Sicherheit befasst sich mit dem durchführen 
+Organisatorischer Maßnahmen die den unbefugten Zugriff auf Geräte verhindern soll. 
+Die genaue Art der Geräte spielt dabei keine Rolle es kann sich um Notebooks, Tablets, PCs oder andere Geräte handeln. 
+Geschützt werden die Endgeräte vor verschiedenen Arten von Schadsoftware oder vor unbefugten Systemzugriffen. 
+Besonders durch trends in der Unternehmenskultur wie bspw. "Bring your own device", gewinnt der Schutz der Firmeneigenen 
+IT-Systeme immer mehr Bedeutung. 
+Einige Maßnahmen haben sich im Bereich der Endgerätsicherheit heraus gezeichnet: 
+
+\begin{itemize}
+    \item Malware-Schutz
+    \item Anwendungsisolation
+    \item URL-Filter
+    \item Client-Firewalls
+\end{itemize}
+TODO: QUELLE
+
+Durch den umfassende Schutzmaßnahmen in diesem Bereich der IT-Sicherheit kann ein Großteil von Sicherheitsrisiken bereits 
+verhindert werden. Ebenfalls ist durch den Schutz der Endgeräte durch Sicherheitsmechanismen wie Firewalls zusätzlich zu den 
+Anwendungen auch das Betriebssystem des Gerätes geschützt. 
+
+\textbf{Schutz von Vernetzungen}
 
 
-Vertraulichkeit = Informationen werden nur Berechtigten bekannt.
-\newline
-Integrität = Informationen sind richtig, vollständig und aktuell
-oder aber dies ist erkennbar nicht der Fall.
-\newline
-Verfügbarkeit = Informationen sind dort und dann zugänglich,
-wo und wann sie von Berechtigten gebraucht werden.
->>>>>>> 2eb122940a7cf50ce66fe0acf5f3155f7890afc9
+
+\textbf{Schutz des Benutzers}
+
+\textbf{Verhinderung von Schwachstellen}
