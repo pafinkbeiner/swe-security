@@ -119,7 +119,7 @@ der Vernetzung von mehreren Systemen wird zum späteren Zeitpunkt noch einmal ge
 
 Quelle: https://www.security-insider.de/was-bedeutet-netzwerksicherheit-a-578391/
 
-\textbf{Schutz des Benutzers}
+\textbf{Schutz des Benutzers}\label{Schutz_des_Benutzers}
 
 Der Anwender selbst ist auch Bestandteil der IT-Sicherheit. Es muss von vorne herein festgelegt werden welcher Benutzer auf welches System zugreifen darf. 
 Das Festlegen solcher Richtlinien wird als "Identity- und Access Management" bezeichnet und regelt die zentrale Verwaltung von Identitäten und Zugriffsrechten auf unterschiedlichen
@@ -137,5 +137,17 @@ Bei der eingesetzten Software muss durch Netzwerkadministratoren und Anwendungsb
 Die Teilbereiche der IT-Sicherheit geben einen Eindruck welche Komponenten zu schützen sind. 
 Die Quelle von Angriffen ist aber meistens noch wichtiger als das eigentliche Schutzziel. Aus diesem Grund wird eine genauere Betrachtung dahingehend 
 erläutert, vor wem ein Schutz überhaupt notwendig ist. 
-
-TODO: Vor wem zu schützen? Quelle: 10.1.1.636.3191...->1.2.2
+\newline
+Das erste Bild das bei dem Gedanken eines Angreifers im IT-Umfeld entsteht, ist das Bild des Hackers. Allerdings sind diese meist nur ein Teil der Gefahren die auf IT-Systeme drohen. 
+Auf IT-Systeme wirken die Naturgesetzte. Komponenten mit mechanischen Komponenten wie bspw. Festplatten oder Laufwerke sind besonders anfällig für Verschleiß. 
+Ebenso wie die Wirkung der Naturgesetze stellen auch Naturkatastrophen eine Gefahr für IT-Systeme dar. In Firmen wird heutzutage bereits bei der Planung von 
+IT-Infrastrukturen jede mögliche Eventualität bedacht und im Vorfeld auf Redundanz geachtet. Tritt so bspw. ein Feuer aus gibt es einen Rohrbruch oder eine Überschwemmung sollte 
+eine Unterbrechungsfreie Redundanz der IT-Systeme weiterhin gewährleistet werden. 
+\newline
+Im Gegensatz zu natürlichen Ursachen kann auch der Mensch durch Unfähigkeit oder Nachlässigkeit eine Gefahr der IT-Sicherheit darstellen. 
+Umso wichtiger ist es die Richtlinien für den Zugang an ein IT-System so granular wie möglich zu distanzieren \autoref{Schutz_des_Benutzers}.
+\newline 
+Auch andere IT-Systeme können die Sicherheit von verbundener IT-Systeme gefährden. Angenommen eine Person mit schlechter Intention versucht einen Zugang zu möglichst vielen 
+IT-Systemen eines Netzwerks zu erlangen. Wenn es ihm gelingt eine Schwachstelle eines Systems zu erlangen erhält dieser die Möglichkeit trotz Firewallrichtlinien, einen Zugang 
+auf alle weiteren Systeme zu erlangen, zu denen entsprechende Richtlinien in der Firewall festgelegt wurden. Dieses Verhalten wird heutzutage meist durch die Schadsoftwareart des 
+"Computerwurms" realisiert. Nachdem dieser auf einem IT-System ausgeführt wurde hat es das Bestreben sich selbst, bspw. über das Netzwerk, zu vervielfältigen.
