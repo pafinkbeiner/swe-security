@@ -55,7 +55,19 @@ Nachdem ein sicherer Tunnel durch die Dienste Authentifizierung, Vertraulichkeit
 Integritätsschutz aufgebaut wurde, befasst sich die Autorisierung mit der Frage wie die Daten 
 anschließend verarbeitet werden. 
 In Computernetzwerken sowie im Bereich von verteilten Systemen bezeichnet die Autorisierung das Zuweisen 
-und die Überprüfung von Zugriffsrechten. 
-
+und die Überprüfung von Zugriffsrechten. Damit bilden Autorisierung und Zugriffssteuerung eine Einheit und 
+verantworten die Vergabe von Freigaben an den Benutzer. 
+Es gibt verschiedene Arten wie festgelegt werden kann auf welche Ressourcen welcher Benutzer einen Zugriff hat. 
+Meist werden die Benutzer zum Stand der Registrierung bereits in eine Benutzergruppe eingeteilt. 
+Mithilfe von Gruppenbasierter Zugriffssteuerung können mehrere Rechte mit einem Mal an einen Benutzer übergeben werden. 
+Zusätzlich kann mehr Arbeit in die Ganularität der Gruppenberechtigungen investiert werden, als 
+wenn für jeden Benutzer eigene Rehte vergeben werden würden. 
+Ein Besipiel für eine Gruppenbasierte Zugriffssteuerung ist die Rechtevergabe in Betriebssystemen wie Linux und Windows.
+Bei Linux gibt es eine sog. "root"-Gruppe, die über Adminsitratorrechte verfügt. Ist ein Benutzerkonto teil dieser Gruppe
+kann ohne Einschränkung Software Installiert werden. Ist ein Benutzer in keiner Gruppe muss für die Installation von Software 
+das Administrator Kennwort eingegeben werden. 
+In verteilten Systemen ist ein ähnliches Prinzip zu beobachten. So gibt es für eine Webanwendung oftmals 
+eine Administratorgruppe und Beispielsweise eine Gruppe mit der Bezeichnung "Kunde" die nur den Zugriff auf 
+einen Teilbereich der Webanwendung zulässt. 
 
 \section{Verfügbarkeit}
