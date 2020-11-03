@@ -1,4 +1,7 @@
 \chapter{Sicherheitslücken}\label{Sicherheitsluecken}
+Damit ein verteiltes System möglichst sicher gestaltet werden kann, ist eine konkrete Analyse des Systems notwendig. Die Analsyse deckt Sicherheitslücken auf und evaluiert welche Angriffe auf welche Systemteile vorgenommen
+werden könnten. Um hierfür näheres Verständnis zu erlangen, werden zunächst konkrete Angriffe auf verteilte Systeme definiert und daraus Anforderungen abgeleitet.
+
 \section{Angriffe}
 
 Informationstechnische Systeme werden heute kaum vollständig isoliert eingesetzt. Das beste Beispiel
@@ -82,7 +85,7 @@ verbunden war, programmierte er diese automatisiert um. Das primäre Ziel des Co
 die Verfügbarkeit des Zielsystemes zu kompromittieren was zu einer Unterbrechung des normalen Datenflusses führte. 
 \\\\
 Die Gefahren von Cyberattacken sind sehr umfangreich die hohe Komplexität der Schadsoftware ist der 
-Grund warum man nie von einem vollständig sicheren System sprechen kann. 
+Grund warum man nie von einem vollständigig sicheren System sprechen kann. 
 Von dem Bundesamt für Sicherheit in der Informationstechnik (BSI) sind einige Interessante Fakten darüber veröffentlicht worden: 
 \begin{itemize}
     \item Etwa alle zwei Sekunden erscheint ein neues Schadprogramm bzw. eine neue Variante
@@ -93,5 +96,25 @@ Von dem Bundesamt für Sicherheit in der Informationstechnik (BSI) sind einige I
 
 
 \section{Anforderungen an verteilte Systeme}
+Um die Sicherheit im verteilten System gegen die möglichen Angriffe zu schützen müssen einige Anforderungen erfüllt werden. In diesem Abschnitt sollen
+konkret die Sicherheitsanforderungen an die verteilten Systeme näher betrachtet werden. Um ein verteiltes System möglich sicher zu gestalten muss eine konkrete Sicherheitsanalyse vorgenommen werden. Hierbei werden alle möglichen Sicherheitslücken und Angriffspunkte aufgedeckt. 
+Entsprechend müssen Lösungen und Sicherheitsmechanismen erarbietet und implementiert werden. Da die konkreten Anforderungen an ein verteiltes System sehr unterschiedlich sind und von der konkreten Art des Systems abhängt, werden hier nur einige konkrete Beispiele genannt.
+\\\\
+Zunächst ist es wichtig, dass das System die Daten der Benutzer vor Angreifern schützt, um Missbrauch zu verhindern. Hierzu zählen beim Beispiel Onlineshops Anmelde- oder Kontodaten. Die Daten und deren Übertragung
+schützt ein Zertifikat.
+\newline
+Weiterhin müssen die Daten des Systems entsprechend ihrer Klassifizierung (öffentlich oder privat) verfügbar gemacht werden. Alle Benutzer werden passend autorisiert und erhalten Zugang zu den ihnen zugänglichen Informationen. Besonders sicher und gut autorisiert müssen dabei die Administratoren werden.
+Bei einem Windkraftwerksystem soll beispielsweise nur der Instandhalter und der Manager Zugriff auf das gesamte System bekommen. Alle anderen Arbeiter erhalten nur Zugriff zu dem Teilsystem, welches sie für ihre Arbeit benötigen.
+ Änderungen die die Benutzer vornehmen
+werden getracked und nachvollziehbar dokumentiert. Auch ein Monitoring über die Systeme muss erfolgen, sodass ein Ausfall schnell erkannt und ein möglicher Unterbrechungs-Angriff verhindert werden kann.
+Allgemein muss die Oberfläche so sicher wie möglich gestaltet werden. Weiterleitungen auf andere Seiten und Dienste sollten sicher sein, ebenso muss der Kunde vor Maleware die über das System
+übertragen werden kann geschützt werden.
+Weiterhin ist neben dem Schutz der Daten auch die Sicherheit der Kommunikation zwischen der Software und dem Kunde wichtig. Dies betrifft zum Beispiel das Senden von E-Mails an den Benutzer. Die Daten werden oft ungescihert
+oder unvalidiert versendet. 
+Zur Vermeidung von Fälschungen in der Datenhaltung muss das System gewissen Verschlüsselungsmechanismen bereitstellen. 
+
+
+
+
 
 
