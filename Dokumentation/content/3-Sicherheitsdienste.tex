@@ -53,15 +53,31 @@ Authentifizierungsmethode keine Möglichkeit die Identität des Benutzers anzune
 
 Das Schutzziel Integrität umfasst sowohl die Korrektheit der Daten (Datenintegrität) 
 als auch die korrekte Funktionsweise des Systems (Systemintegrität). 
-Man unterscheidet zwischen der starken und der schwachen Integrität. 
+Es gibt schwache und starke Integrität. 
 Eine starke Integrität liegt vor, wenn keine Möglichkeit der unbefugten Datenmanipulation besteht. 
 Von einer schwachen Integrität spricht man hingegen dann, falls eine Datenmanipulation zwar generell, 
-aber auf keinen Fall unbemerkt möglich ist. In vielen Fällen ist eine Manipulation leider nicht zu verhindern, 
-in solchen Fällen soll dies aber dann wenigstens nicht unbemerkt bleiben. 
+aber auf keinen Fall unbemerkt möglich ist. 
 Mögliche Manipulationen sind z.B. das
 Verändern von Daten
 Löschen von Daten
 Einfügen von Daten
+Grundsätzlich ist es fast unmöglich Veränderungen an digitalen Daten vollständig zu vermeiden. 
+Dadurch das man die Veränderungen von Daten nicht vermeiden kann, versucht man dem Benutzer die 
+Änderung der Daten erkennbar zu machen. 
+Besonders im Linux Umfeld hat sich eine überprüfung von Downloads mittels Prüfsummen etabliert.
+Zu der eigentlichen Download Dateien ist zusätzlich die Information "SHA265SUM" gegeben (siehe \autoref{Pruefsumme}).
+\newline
+Es gibt verschiedene Arten wie eine Authentifizierung durchgeführt werden kann:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/checksum_pic1.png}
+    \caption[Prüfsumme]{Pruefsumme} 
+    \label{Pruefsumme}
+\end{figure}  
+Nach dem Download der Datei kann die Prüfsumme über die heruntergeladene Datei erfolgen,
+sind die beiden Hashwerte identisch ist der Download valide. 
+Stimmen die beiden Prüfsummen nicht über ein, wurde der Download manipuliert und die 
+Integrität der Daten wurde verletzt.
 
 \section{Nicht-Anfechtbarkeit}
 \section{Zugriffssteuerung/Autorisierung}
