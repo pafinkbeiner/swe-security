@@ -4,8 +4,19 @@ In den vorherigen Kapiteln wurden Angriffsmöglichkeiten und die Anforderungen a
 ein verteiltes System bereitstellen muss um als sicher zu gelten. Dieses Kapitel erklärt die unterschiedlichen Dienste und stellt sie anschaulich anhand von Beispielen dar.
 
 \section{Vertraulichkeit}
-Die Vertraulichkeit macht Daten nur für eine Gruppe von autorisierten Benutzern verfügbar. Ein Beispiel wäre zum Beispiel ein gekaufter Film auf Amazon Prime. Dieser Film ist nur denjenige
-Benutzern verfügbar, die ihn gekauft oder geliehen haben \cite{Kriha.2008}. Nach \cite{}Unter die Vertraulichkeit fallen geheimzuhaltende Nachrichteninhalte, die nur von den Kommunikatio
+Die Vertraulichkeit macht Daten nur für eine Gruppe von autorisierten Benutzern verfügbar und schützt sie so vor unbefugten Zugängen. Diese Daten können verschiedene Arten von Informationen,
+wie zum Besipiel Nachrichten, Videos oder Filme, Passwörter oder Kontodaten sein. Ein konkretes Beispiel wäre ein Film auf Amazon Prime. Dieser Film ist nur denjenigen
+Benutzern verfügbar, die ihn gekauft oder geliehen haben. Um ein weiteres Beispiel handelt es sich bei den Anmeldedaten eines Benutzers. Die Verbindung zwischen Benutzer
+und Server muss stets verschlüsselt sein, sodass kein Unbefugter die Anmeldedaten abgreifen kann. \cite{Kriha.2008}
+\\\\
+In verteilten Systemen funktioniert der Vertraulichkeitsdienst  entweder durch Zugriffsbeschränkungen über einen Kontrollmechanismus oder Verschlüsselung der Informationen (vgl \cite{Mirhakkak.1993}).
+Für die Verschlüsselung kann beispielsweise das TLSP Protokoll herangezogen werden. Die Informationen werden vom Protokoll vor dem Senden verschlüsselt und vor dem Empfang wieder entschlüsselt.
+So werden die Nachrichten gesichert übermittelt, sind aber dennoch für die Kommunikationspartner zugänglich. Die Vertraulichkeit dient der Sicherstellung des Schutzes der Daten und stellt eine Grundvoraussetzung für erfolgreiche Authentifizierung
+und Autorisierung dar. Der Vertraulichkeitsdienst stellt sicher, dass während dem Informationsaustausch keine Manipulationen oder Abfangen der Daten von passiven Angreifern erfolgt ist. \cite{Mirhakkak.1993}
+Die Vertraulichkeit dient jedoch nicht nur dem Schutz der Daten vor Unbefugten, sondern trägt auch zur Anonymität der Benutzer bei.
+In einem verteilten Informationssytem kann der Vertraulichkeitsdienst Beispielsweise durch Nutzerprofile erfolgen. Hier erhält jeder nur Zugriff auf die ihm zugewiesenen Bereiche. Die persönlichen Daten wie Name und
+Adresse sind durch Anmeldename und Kennwort geschützt. Um zu verhindern, dass ein Unbefugter Anmeldename und Passwort abgreifen kann, wird die Verbindung mit einem Sicherheitszertifikat verschlüsselt.
+
 
 \section{Authentifizierung}
 
@@ -80,6 +91,27 @@ Stimmen die beiden Prüfsummen nicht über ein, wurde der Download manipuliert u
 Integrität der Daten wurde verletzt.
 
 \section{Nicht-Anfechtbarkeit}
+
+Das Schutzziel der Nicht-Anfechtbarkeit wurde früher hauptäschlich im Bereich des Informationsaustausches verwendet. Jedem Kommunikationsteilnehmer soll nachgewiesen werden können, welche Informationen er 
+versendet oder erhalten hat. Hierfür werden verschiedene Arten der Nachweisbarkeit benötigt. Durch die Nachweisbarkeit der Identität wird das Verleugnen von Nachrichten verhindert und zusätzlich der Betrug verhindert.
+Die Nachweisbarkeit des Sendens bezeugt, dass die entsprechenden Informationen auch wirklich gesendet wurden. Ergänzend hierzu kann die Nachweisbarkeit des Zustellens bezeugen, dass der Empfänger die Informationen
+auch tatsächlich erhalten hat. \cite{Bedner.2010}
+\\\\
+Mit dem Zeitalter der Digitalisierung erweiterte sich diese Begriffdefinition auf Handlungen und Transaktionen (vgl \cite{Bedner.2010}).
+Unter Nicht-Anfechtbarkeit versteht man heute das Erzeugen eines Nachweises für eine bestimmte Handlung oder Aktion. Der Beweis dient dazu, zu dokumentieren und festzuhalten was ein Benutzer getätigt hat. 
+Der Nicht-Anfechtbarkeitsdienst
+dient im Streitfall dazu, die erfolgten Aktionen zwischen zwei Kommunikationspartnern Dritten zu beweisen.
+Ein konrektes Beispiel wäre ein Überwachungssystem mit Kameras und audiovisueller Aufnahme, wie es Kriha in seinem Buch \cite{Kriha.2008} beschriebt. Um die Daten vor Gericht verwertbar zu machen, muss garantiert werden, dass die Aufnahme von einer der Überwachungskameras stammt.
+Weiterhin darf es nciht möglich sein Audiodateien einzuschleusen und so Daten zu fälschen. Auch in Online-Shops in Beriechen des E-Commerce ist Nicht-Anfechtbarkeit wichtig.
+Kauft ein Kunde etwas, so muss der Shop genau festhalten was der Kunde gekauft hat. Sind diese Daten nicht-anfechtbar abgespeichert, so kann dem Kunde stets die Inanspruchnahme des zahlungspflichtigen Dienstes
+bewiesen werden. Besonders wichtig ist auch wie beim Beispiel des Überwachungssystems die Glaubhaftigkeit des Nachweises, sodass die Möglichkeit der Fälschung von Nachweisen ausgeschlossen werden kann.
+Der Nicht-Anfechtbarkeitsdienst sollte aus diesem Grund einen erfolgten Informationsaustausch so dokumentieren, dass der Nachweis nicht gefälscht oder selbst erzeugt sein könnte. 
+den Begriff Nicht-Anfechtbarkeit verwendet man auch häufig zusammen mit dem Begriff \glqq Digitale Signatur\grqq{}. Auch die digitale Signatur ist eine Form der Garantie von Nicht-Anfechtbarkeit. 
+Es wird die Identität des Benutzers überprüft und ein gültiges Dokument durch eine elektronsiche Unterschrift rechtskräftig unterzeichnet.
+\\\\
+Es gibt keine konkreten Algorithmen oder Vorgaben, wie der Nicht-Anfechtbarkeitsdienst in verteilten Systemen implementiert werden kann.
+Die Implementierung ist stark von der Klasse des verteilten Systems abhängig.
+
 \section{Zugriffssteuerung/Autorisierung}
 
 Nachdem ein sicherer Tunnel durch die Dienste Authentifizierung, Vertraulichkeit und 
