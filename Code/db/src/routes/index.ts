@@ -1,5 +1,4 @@
 import * as express from "express";
-import { networkInterfaces } from "os";
 import {DatabaseHandler } from "../Helper/Database";
 import { errorStatus, successStatus } from "../models/Status";
 const router = express.Router();
