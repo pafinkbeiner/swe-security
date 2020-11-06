@@ -1,5 +1,4 @@
 import * as express from "express";
-import { LogHandler } from "../Helper/Log";
 
 const router = express.Router();
 
