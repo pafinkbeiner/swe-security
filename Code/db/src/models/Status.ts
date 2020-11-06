@@ -1,5 +1,4 @@
 import { DatabaseHandler } from "../Helper/Database";
-import { LogHandler } from "../Helper/Log";
 
 export interface Status{
     success: boolean;
@@ -8,3 +7,14 @@ export interface Status{
     addInfo?: string[];
 }
 
+export const successStatus: Status = {
+    success: true,
+    msg: "Operation was performed successfully!",
+    code: 200
+}
+
+export const errorStatus: Status = {
+    success: false,
+    msg: "Operation was performed unsuccessfully!",
+    code: 500
+}

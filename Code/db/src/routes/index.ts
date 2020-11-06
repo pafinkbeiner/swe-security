@@ -1,6 +1,7 @@
 import * as express from "express";
 import { networkInterfaces } from "os";
 import {DatabaseHandler } from "../Helper/Database";
+import { errorStatus, successStatus } from "../models/Status";
 const router = express.Router();
 
 //////////////////////// MAIN ROUTES ////////////////////////
@@ -9,26 +10,43 @@ const router = express.Router();
  * GET
  * Returns data to a specific key
  */
-router.get("/:key", function(req, res, next) {
+router.get("/get/:key", function(req, res, next) {
 
-  if(req.params.key == undefined) next();
+  if(req.params.key == undefined) res.json(errorStatus.msg=`Key was not provided`);
 
   res.json(DatabaseHandler.getDbInstance().get(req.params.key));
-
 });
 
 /**
  * POST
  * Saves data to a specified key
  * key -> req.params.key
- * data -> req.body.
+ * data -> req.body.data
  */
-router.post("/:key", function(req, res, next) {
+router.post("/set/:key", function(req, res, next) {
   
-  if(req.params.key == undefined) next();
-  if(req.body.data == undefined) next();
+  if(req.params.key == undefined) res.json(errorStatus.msg=`Key was not provided`);
+  if(req.body.data == undefined) res.json(errorStatus.msg=`Data was not provided`);
 
   DatabaseHandler.getDbInstance().set(req.params.key, req.body.data);
+
+  res.json(successStatus.msg=`Item with id ${req.params.key} was added successfully`);
+});
+
+/**
+ * GET
+ * Alternativ way of saving key value pairs
+ * key -> req.params.key
+ * data -> req.params.data
+ */
+router.get("/set/:key/:data", function(req, res, next) {
+
+  if(req.params.key == undefined) res.json(errorStatus.msg=`Key was not provided`);
+  if(req.params.data == undefined) res.json(errorStatus.msg=`Data was not provided`);
+  
+  DatabaseHandler.getDbInstance().set(req.params.key, req.params.data);
+
+  res.json(successStatus.msg=`Item with id ${req.params.key} was added to db successfully`);
 
 });
 
@@ -39,8 +57,6 @@ router.post("/:key", function(req, res, next) {
  * Returns everything that is saved in the Database
  */
 router.get("/all", function(req, res, next) {
-
-  if(req.params.key == undefined) next();
 
   res.json(DatabaseHandler.getDbInstance().getAll());
 
@@ -53,10 +69,25 @@ router.get("/all", function(req, res, next) {
  */
 router.get("/delete/:key", function(req, res, next) {
 
-  if(req.params.key == undefined) next();
+  if(req.params.key == undefined) res.json(errorStatus.msg=`Key was not provided`);
 
   DatabaseHandler.getDbInstance().remove(req.params.key);  
 
+  res.json(successStatus.msg=`Item with id ${req.params.key} was removed successfully`);
+
 });
+
+/**
+ * GET
+ * Wipes db
+ */
+router.get("/wipe", function(req, res, next) {
+
+  DatabaseHandler.getDbInstance().set("", {});  
+
+  res.json(successStatus.msg=`Wipe was successfully`);
+
+});
+
 
 export default router;
