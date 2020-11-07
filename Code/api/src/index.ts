@@ -14,7 +14,7 @@ const app = express();
 
 // port is now available to the Node.js runtime
 // as if it were an environment variable
-const port = normalizePort(process.env.SERVER_PORT || 5000);
+const port = normalizePort(process.env.SERVER_PORT || 5001);
 
 // Configure Express to parse JSON
 app.use( express.json());
@@ -46,7 +46,7 @@ app.use(function(err: any, req: any, res: any, next: any) {
 // start the express server
 app.listen( port, () => {
 	// tslint:disable-next-line:no-console
-	console.log( `Server started at http://localhost:${ port }` );
+	console.log( `API started at http://localhost:${ port }` );
 } );
 
 app.on("error", onError);
