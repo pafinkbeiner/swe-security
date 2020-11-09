@@ -76,7 +76,7 @@ Grundsätzlich ist es fast unmöglich Veränderungen an digitalen Daten vollstä
 Dadurch das man die Veränderungen von Daten nicht vermeiden kann, versucht man dem Benutzer die 
 Änderung der Daten erkennbar zu machen. 
 Besonders im Linux Umfeld hat sich eine überprüfung von Downloads mittels Prüfsummen etabliert.
-Zu der eigentlichen Download Dateien ist zusätzlich die Information "SHA265SUM" gegeben (siehe \autoref{Pruefsumme}).
+Zu der eigentlichen Download Dateien ist zusätzlich die Information \glqq SHA265SUM\grqq{ } gegeben (siehe \autoref{Pruefsumme}).
 \newline
 Es gibt verschiedene Arten wie eine Authentifizierung durchgeführt werden kann:
 \begin{figure}[H]
@@ -126,11 +126,28 @@ Mithilfe von Gruppenbasierter Zugriffssteuerung können mehrere Rechte mit einem
 Zusätzlich kann mehr Arbeit in die Ganularität der Gruppenberechtigungen investiert werden, als 
 wenn für jeden Benutzer eigene Rehte vergeben werden würden. 
 Ein Besipiel für eine Gruppenbasierte Zugriffssteuerung ist die Rechtevergabe in Betriebssystemen wie Linux und Windows.
-Bei Linux gibt es eine sog. "root"-Gruppe, die über Adminsitratorrechte verfügt. Ist ein Benutzerkonto teil dieser Gruppe
+Bei Linux gibt es eine sog. \glqq root\grqq{}-Gruppe, die über Adminsitratorrechte verfügt. Ist ein Benutzerkonto teil dieser Gruppe
 kann ohne Einschränkung Software Installiert werden. Ist ein Benutzer in keiner Gruppe muss für die Installation von Software 
 das Administrator Kennwort eingegeben werden. 
 In verteilten Systemen ist ein ähnliches Prinzip zu beobachten. So gibt es für eine Webanwendung oftmals 
-eine Administratorgruppe und Beispielsweise eine Gruppe mit der Bezeichnung "Kunde" die nur den Zugriff auf 
+eine Administratorgruppe und Beispielsweise eine Gruppe mit der Bezeichnung \glqq Kunde\grqq{} die nur den Zugriff auf 
 einen Teilbereich der Webanwendung zulässt. 
 
 \section{Verfügbarkeit}
+
+Der Sicherheitsdienst Verfügbarkeit garantiert, dass das verteilte System und die angeforderten Daten für seine Benutzer zeitgerecht zur Verfügung steht. Die Datenverarbeitung muss stets ordnungsgemäß
+und inhaltlich korrekt sein. \cite{Bedner.2010}
+Dieser Dienst wird in den aufgeführten Quellen stets im Rahmen der informationstechnischen Systeme verwendet. Der Verfügbarkeitsdienst
+  zielt vorallem darauf ab zu verhindern, 
+dass Angreifer über Malware das System ausschalten. Oftmals funktioniert das Auschalten über mehrere kontaminierte Clients, die gleichzeitig auf das System zugreifen. 
+Diese Aktion hat eine Überlastung des Ziel-Servers und infolgedessen einen System-Absturz zur Folge. \cite{Kriha.2008}
+\newline
+Betrachtet man die Dauer der Verfügbarkeit des verteilten Systems im Verhältnis zu der Gesamtzeit, so ist das verteilte System optimalerweise 100\% verfügbar. Dies kann in der Realtiät jedoch kaum erreicht werden.
+Fällt ein System aus, so wird die gesamte Ausfallzeit als Downtime bezeichnet. \cite{Bedner.2010}
+\newline
+ Um die Downtime des Systems möglichst gering zu halten gibt es verschiedene Maßnahmen, die je nach Art des verteilten Systems und auch
+dem konkreten Grund des Ausfalls variieren. Als eine sehr allgemine Maßnahme nennt beispielsweise Bedner in seinem Zeitungsartikel \cite{Bedner.2010} die Verwendung redundanter Systeme. Bei einem Ausfall
+des Hauptsystems kann das redundante System verwendet werden und ein Absturz wird somit verhidndert. Dies betrifft beispielsweise besonders verteilte Systeme der erneuerbaren Engerien.
+Für das konkrete Beispiel eines informationstechnischen Systems schreibt Kriha in seinem Buch \cite{Kriha.2008} über das Besipiel eines Angriffs. Um zu verhindern das kontaminierte Clients das System zu Absturz
+bringen, müssen Load-Balancing-Mechanismen verwendet werden. Dies sind Mechanismen, die der Lastverteilung dienen. Ist ein Server überlastet, so leitet er die Anfragen an einen redundant arbeitenden Server weiter.
+Eingesetzt wird dies zum Beispiel bei allen großen Streaming Anbietern wie etwa Netflix.
