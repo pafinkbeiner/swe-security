@@ -1,4 +1,5 @@
 import * as express from "express";
+import { authMiddleware } from "../Helper/Auth";
 import {DatabaseHandler } from "../Helper/Database";
 import { errorStatus, successStatus } from "../models/Status";
 const router = express.Router();
@@ -9,7 +10,15 @@ const router = express.Router();
  * GET
  * Returns data to a specific key
  */
-router.get("/get/:key", function(req, res, next) {
+router.get("/",function(req, res, next) {
+  res.json("SWE-SECURITY DB");
+});
+
+/* 
+ * GET
+ * Returns data to a specific key
+ */
+router.get("/get/:key",authMiddleware, function(req, res, next) {
 
   if(req.params.key == undefined) res.json(errorStatus.msg=`Key was not provided`);
 
@@ -22,7 +31,7 @@ router.get("/get/:key", function(req, res, next) {
  * key -> req.params.key
  * data -> req.body.data
  */
-router.post("/set/:key", function(req, res, next) {
+router.post("/set/:key",authMiddleware, function(req, res, next) {
   
   if(req.params.key == undefined) res.json(errorStatus.msg=`Key was not provided`);
   if(req.body.data == undefined) res.json(errorStatus.msg=`Data was not provided`);
@@ -38,7 +47,7 @@ router.post("/set/:key", function(req, res, next) {
  * key -> req.params.key
  * data -> req.params.data
  */
-router.get("/set/:key/:data", function(req, res, next) {
+router.get("/set/:key/:data",authMiddleware ,function(req, res, next) {
 
   if(req.params.key == undefined) res.json(errorStatus.msg=`Key was not provided`);
   if(req.params.data == undefined) res.json(errorStatus.msg=`Data was not provided`);
@@ -55,7 +64,7 @@ router.get("/set/:key/:data", function(req, res, next) {
  * GET 
  * Returns everything that is saved in the Database
  */
-router.get("/all", function(req, res, next) {
+router.get("/all", authMiddleware,function(req, res, next) {
 
   res.json(DatabaseHandler.getDbInstance().getAll());
 
@@ -66,7 +75,7 @@ router.get("/all", function(req, res, next) {
  * Deletes Element with a specific key
  * key -> req.params.key
  */
-router.get("/delete/:key", function(req, res, next) {
+router.get("/delete/:key", authMiddleware,function(req, res, next) {
 
   if(req.params.key == undefined) res.json(errorStatus.msg=`Key was not provided`);
 
@@ -80,7 +89,7 @@ router.get("/delete/:key", function(req, res, next) {
  * GET
  * Wipes db
  */
-router.get("/wipe", function(req, res, next) {
+router.get("/wipe", authMiddleware,function(req, res, next) {
 
   DatabaseHandler.getDbInstance().set("", {});  
 
