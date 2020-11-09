@@ -1,6 +1,9 @@
 import * as express from "express";
+import { nextTick } from "process";
+import { errorMonitor } from "stream";
 import { authMiddleware } from "../Helper/Auth";
 import {DatabaseHandler } from "../Helper/Database";
+import { Account } from "../models/Account";
 import { errorStatus, successStatus } from "../models/Status";
 const router = express.Router();
 
@@ -11,91 +14,33 @@ const router = express.Router();
  * Returns data to a specific key
  */
 router.get("/",function(req, res, next) {
-  res.json("SWE-SECURITY DB");
+  res.json("SWE-SECURITY BANK");
 });
 
-/* 
- * GET
- * Returns data to a specific key
- */
-router.get("/get/:key",authMiddleware, function(req, res, next) {
+router.get("/getBalance/:IBAN", (req, res, next) => {
+  if(req.params.IBAN == undefined) res.json(errorStatus.msg = "IBAN was not provided");
+  let account: Account = DatabaseHandler.getDbInstance().get(req.params.IBAN)
+  if(account == undefined) res.json(errorStatus.msg = "Account with specified IBAN was not found!");
+  res.json(account.balance);
+})
 
-  if(req.params.key == undefined) res.json(errorStatus.msg=`Key was not provided`);
+router.post("/new", (req, res, next) => {
 
-  res.json(DatabaseHandler.getDbInstance().get(req.params.key));
-});
+  if(req.body.IBAN == undefined || req.body.firstname == undefined || req.body.lastname == undefined || req.body.balance == undefined){
+    next();
+  }
 
-/**
- * POST
- * Saves data to a specified key
- * key -> req.params.key
- * data -> req.body.data
- */
-router.post("/set/:key",authMiddleware, function(req, res, next) {
-  
-  if(req.params.key == undefined) res.json(errorStatus.msg=`Key was not provided`);
-  if(req.body.data == undefined) res.json(errorStatus.msg=`Data was not provided`);
+  const account: Account = {
+    IBAN: req.body.IBAN,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    balance: req.body.balance
+  }
 
-  DatabaseHandler.getDbInstance().set(req.params.key, req.body.data);
+  DatabaseHandler.getDbInstance().set(account.IBAN, account);
 
-  res.json(successStatus.msg=`Item with id ${req.params.key} was added successfully`);
-});
-
-/**
- * GET
- * Alternativ way of saving key value pairs
- * key -> req.params.key
- * data -> req.params.data
- */
-router.get("/set/:key/:data",authMiddleware ,function(req, res, next) {
-
-  if(req.params.key == undefined) res.json(errorStatus.msg=`Key was not provided`);
-  if(req.params.data == undefined) res.json(errorStatus.msg=`Data was not provided`);
-  
-  DatabaseHandler.getDbInstance().set(req.params.key, req.params.data);
-
-  res.json(successStatus.msg=`Item with id ${req.params.key} was added to db successfully`);
+  res.json(successStatus);
 
 });
-
-///////////////////////////////// OTHER ROUTES //////////////////////////////////////
-
-/**
- * GET 
- * Returns everything that is saved in the Database
- */
-router.get("/all", authMiddleware,function(req, res, next) {
-
-  res.json(DatabaseHandler.getDbInstance().getAll());
-
-});
-
-/**
- * GET
- * Deletes Element with a specific key
- * key -> req.params.key
- */
-router.get("/delete/:key", authMiddleware,function(req, res, next) {
-
-  if(req.params.key == undefined) res.json(errorStatus.msg=`Key was not provided`);
-
-  DatabaseHandler.getDbInstance().remove(req.params.key);  
-
-  res.json(successStatus.msg=`Item with id ${req.params.key} was removed successfully`);
-
-});
-
-/**
- * GET
- * Wipes db
- */
-router.get("/wipe", authMiddleware,function(req, res, next) {
-
-  DatabaseHandler.getDbInstance().set("", {});  
-
-  res.json(successStatus.msg=`Wipe was successfully`);
-
-});
-
 
 export default router;
