@@ -25,6 +25,13 @@ router.get("/getBalance/:IBAN", (req, res, next) => {
   res.json(account.balance);
 })
 
+router.get("/getAccount/:IBAN", (req, res, next) => {
+  if(req.params.IBAN == undefined) res.json(errorStatus.msg = "IBAN was not provided");
+  let account: Account = DatabaseHandler.getDbInstance().get(req.params.IBAN)
+  if(account == undefined) res.json(errorStatus.msg = "Account with specified IBAN was not found!");
+  res.json(account);
+});
+
 router.post("/new", (req, res, next) => {
   if(req.body.IBAN == undefined) res.json(errorStatus.msg = "IBAN was not provided");
   if(req.body.firstname == undefined) res.json(errorStatus.msg = "firstname was not provided");
