@@ -1,6 +1,10 @@
 import * as express from "express";
+import { JsonDB } from "node-json-db";
+import { nextTick } from "process";
+import { errorMonitor } from "stream";
 import { authMiddleware } from "../Helper/Auth";
 import {DatabaseHandler } from "../Helper/Database";
+import { Account } from "../models/Account";
 import { errorStatus, successStatus } from "../models/Status";
 const router = express.Router();
 
@@ -11,91 +15,71 @@ const router = express.Router();
  * Returns data to a specific key
  */
 router.get("/",function(req, res, next) {
-  res.json("SWE-SECURITY DB");
+  res.json("SWE-SECURITY BANK");
 });
 
-/* 
- * GET
- * Returns data to a specific key
- */
-router.get("/get/:key",authMiddleware, function(req, res, next) {
+router.get("/getBalance/:IBAN", (req, res, next) => {
+  if(req.params.IBAN == undefined) res.json(errorStatus.msg = "IBAN was not provided");
+  let account: Account = DatabaseHandler.getDbInstance().get(req.params.IBAN)
+  if(account == undefined) res.json(errorStatus.msg = "Account with specified IBAN was not found!");
+  res.json(account.balance);
+})
 
-  if(req.params.key == undefined) res.json(errorStatus.msg=`Key was not provided`);
-
-  res.json(DatabaseHandler.getDbInstance().get(req.params.key));
+router.get("/getAccount/:IBAN", (req, res, next) => {
+  if(req.params.IBAN == undefined) res.json(errorStatus.msg = "IBAN was not provided");
+  let account: Account = DatabaseHandler.getDbInstance().get(req.params.IBAN)
+  if(account == undefined) res.json(errorStatus.msg = "Account with specified IBAN was not found!");
+  res.json(account);
 });
 
-/**
- * POST
- * Saves data to a specified key
- * key -> req.params.key
- * data -> req.body.data
- */
-router.post("/set/:key",authMiddleware, function(req, res, next) {
-  
-  if(req.params.key == undefined) res.json(errorStatus.msg=`Key was not provided`);
-  if(req.body.data == undefined) res.json(errorStatus.msg=`Data was not provided`);
+router.post("/new", (req, res, next) => {
+  if(req.body.IBAN == undefined) res.json(errorStatus.msg = "IBAN was not provided");
+  if(req.body.firstname == undefined) res.json(errorStatus.msg = "firstname was not provided");
+  if(req.body.lastname == undefined) res.json(errorStatus.msg = "lastname was not provided");
+  if(req.body.balance == undefined) res.json(errorStatus.msg = "balance was not provided");
 
-  DatabaseHandler.getDbInstance().set(req.params.key, req.body.data);
+  const account: Account = {
+    IBAN: req.body.IBAN,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    balance: Number.parseInt(req.body.balance)
+  }
 
-  res.json(successStatus.msg=`Item with id ${req.params.key} was added successfully`);
-});
+  DatabaseHandler.getDbInstance().set(account.IBAN, account);
 
-/**
- * GET
- * Alternativ way of saving key value pairs
- * key -> req.params.key
- * data -> req.params.data
- */
-router.get("/set/:key/:data",authMiddleware ,function(req, res, next) {
-
-  if(req.params.key == undefined) res.json(errorStatus.msg=`Key was not provided`);
-  if(req.params.data == undefined) res.json(errorStatus.msg=`Data was not provided`);
-  
-  DatabaseHandler.getDbInstance().set(req.params.key, req.params.data);
-
-  res.json(successStatus.msg=`Item with id ${req.params.key} was added to db successfully`);
+  res.json(successStatus);
 
 });
 
-///////////////////////////////// OTHER ROUTES //////////////////////////////////////
+router.get("/transaction/:IBANFROM/:IBANTO/:amount", (req, res, next) => {
 
-/**
- * GET 
- * Returns everything that is saved in the Database
- */
-router.get("/all", authMiddleware,function(req, res, next) {
+  if(req.params.IBANFROM == undefined) res.json(errorStatus.msg = "IBANFROM was not provided");
+  if(req.params.IBANTO == undefined) res.json(errorStatus.msg = "IBANTO was not provided");
+  if(req.params.amount == undefined) res.json(errorStatus.msg = "amount was not provided");
+
+  let accountFROM: Account = DatabaseHandler.getDbInstance().get(req.params.IBANFROM);
+  let accountTO: Account = DatabaseHandler.getDbInstance().get(req.params.IBANTO);
+
+  if(accountFROM == undefined) res.json(errorStatus.msg = `No Account was found with IBAN: ${req.params.IBANFROM} was not provided`);
+  if(accountTO == undefined) res.json(errorStatus.msg = `No Account was found with IBAN: ${req.params.IBANTO} was not provided`);
+
+  const amountString: string = req.params.amount;
+
+  const amount: number = Number.parseInt(amountString);
+
+  accountFROM.balance = accountFROM.balance - amount;
+  accountTO.balance = accountTO.balance + amount;
+
+  DatabaseHandler.getDbInstance().update(req.params.IBANTO, accountTO);
+  DatabaseHandler.getDbInstance().update(req.params.IBANFROM, accountFROM);
+
+  res.json(successStatus.msg="Transaction was completed successfully");
+});
+
+router.get("/all", (req, res, next) => {
 
   res.json(DatabaseHandler.getDbInstance().getAll());
 
 });
-
-/**
- * GET
- * Deletes Element with a specific key
- * key -> req.params.key
- */
-router.get("/delete/:key", authMiddleware,function(req, res, next) {
-
-  if(req.params.key == undefined) res.json(errorStatus.msg=`Key was not provided`);
-
-  DatabaseHandler.getDbInstance().remove(req.params.key);  
-
-  res.json(successStatus.msg=`Item with id ${req.params.key} was removed successfully`);
-
-});
-
-/**
- * GET
- * Wipes db
- */
-router.get("/wipe", authMiddleware,function(req, res, next) {
-
-  DatabaseHandler.getDbInstance().set("", {});  
-
-  res.json(successStatus.msg=`Wipe was successfully`);
-
-});
-
 
 export default router;
