@@ -19,11 +19,18 @@ export async function login(username: string, password:string){
     }
 
     if(user != undefined){
-        if(bcrypt.compareSync(password, user.password)){
+       
+        console.log("Compare: "+password+" with: "+ user.password);
+        const result = bcrypt.compareSync(password, user.password);
+
+        console.log(result)
+
+        if(result){
             return {key: jwt.sign(user,"secret")};
         }
+
     }else{
-        return "Error while login in";
+        return undefined;
     }
 
 
@@ -43,7 +50,7 @@ export async function register(username: string, password:string, mail:string){
         found = false;
     }
 
-    if(found) return "User does already exist!"
+    if(found) return undefined
 
     let user: User = {
         username: username,
