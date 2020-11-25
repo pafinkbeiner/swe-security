@@ -6,7 +6,7 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
+      username: "",
       password: "",
     };
     this.onSubmit = this.onSubmit.bind(this);
@@ -14,23 +14,26 @@ export default class Login extends Component {
   }
 
   canLogin() {
-    return this.state.email.length === 0 || this.state.password.length === 0;
+    return this.state.username.length === 0 || this.state.password.length === 0;
   }
 
-  onSubmit() {}
+  onSubmit() {
+    console.log(this.state.username);
+    console.log(this.state.password);
+  }
 
   render() {
     return (
       <div className="background">
         <div className="login">
           <form onSubmit={this.onSubmit}>
-            <FormGroup controlId="email" className="form-row">
+            <FormGroup controlId="username" className="form-row">
               <FormControl
                 type="text"
-                value={this.state.email}
+                value={this.state.username}
                 size="lg"
-                placeholder="E-Mail"
-                onChange={(e) => this.setState({ email: e.target.value })}
+                placeholder="username"
+                onChange={(e) => this.setState({ username: e.target.value })}
               />
             </FormGroup>
             <FormGroup controlId="password" className="form-row">
