@@ -10,20 +10,20 @@ router.get("/", async (req, res, next) => {
   res.json(result)
 });
 
-router.post("login", (req, res, next) => {
+router.post("/login", async (req, res, next) => {
 
   if(req.body.username == undefined) res.status(400);
   if(req.body.password == undefined) res.status(400);
 
   if(req.body.username != undefined && req.body.password != undefined){
-
-    res.send(AuthHandler.login(req.body.username, req.body.password));
+    
+    res.send(await AuthHandler.login(req.body.username, req.body.password));
 
   }
 
 });
 
-router.post("/register", (req, res, next) => {
+router.post("/register", async (req, res, next) => {
 
   if(req.body.username == undefined) res.status(400);
   if(req.body.password == undefined) res.status(400);
@@ -31,11 +31,7 @@ router.post("/register", (req, res, next) => {
 
   if(req.body.username != undefined && req.body.password != undefined && req.body.mail != undefined){
 
-    if(AuthHandler.register(req.body.username, req.body.password, req.body.mail)){
-      res.status(200)
-    }else{
-      res.status(400);
-    }
+    res.send(await AuthHandler.register(req.body.username, req.body.password, req.body.mail));
 
   }
 

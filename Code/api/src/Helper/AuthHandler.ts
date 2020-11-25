@@ -4,27 +4,46 @@ import { DatabaseHandler } from "./Database";
 import {User} from "../models/User"
 import { Role } from "../models/Role";
 import { resolve } from "path";
+import { LogHandler } from "./Log";
 
 
-export function login(username: string, password:string){
+export async function login(username: string, password:string){
 
-    const user = DatabaseHandler.getDbInstance().get(username);
+    LogHandler.getLogInstance().log(`info that user with username: ${username} tried to login`);
+
+    let user;
+    try{
+        user = await (await DatabaseHandler.getDbInstance().get(username)).data;
+    }catch{
+        user = undefined;
+    }
 
     if(user != undefined){
         if(bcrypt.compareSync(password, user.password)){
-            jwt.sign(user,"secret");
+            return {key: jwt.sign(user,"secret")};
         }
     }else{
-        return undefined;
+        return "Error while login in";
     }
 
 
 
 }
 
-export function register(username: string, password:string, mail:string){
+export async function register(username: string, password:string, mail:string){
 
-    if(DatabaseHandler.getDbInstance().get(username) != undefined) return false;
+    LogHandler.getLogInstance().log(`info that user with username: ${username} tried to register`);
+
+    let found: boolean;
+
+    try{
+        await (await DatabaseHandler.getDbInstance().get(username)).data;
+        found = true;
+    }catch{
+        found = false;
+    }
+
+    if(found) return "User does already exist!"
 
     let user: User = {
         username: username,
@@ -35,6 +54,6 @@ export function register(username: string, password:string, mail:string){
 
     DatabaseHandler.getDbInstance().set(username, user);
 
-    return true;
+    return login(username, password);
 
 }

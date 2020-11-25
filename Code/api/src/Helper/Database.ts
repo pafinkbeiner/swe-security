@@ -7,14 +7,18 @@ export class Database{
     };
 
     set(key:string, data: any){
-        return axios.post(`${process.env.DB_IP}/set/${key}`,data, this.config);
+        try{
+            return axios.post(`${process.env.DB_IP}/set/${key}`,data, this.config);
+        }catch(err){
+            console.log(err)
+        }
     }
 
     update(key:string, data: any){
         return axios.post(`${process.env.DB_IP}/set/${key}`,data, this.config);
     }
 
-    get(key: string): any{
+    get(key: string){
         return axios.get(`${process.env.DB_IP}/get/${key}`, this.config);
     }
 
