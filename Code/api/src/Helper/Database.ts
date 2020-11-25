@@ -1,30 +1,31 @@
+import axios, { AxiosRequestConfig } from "axios";
+
 export class Database{
 
-    db: Array<{id: string, data: any}> = [];
+    config = {
+        headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o` }
+    };
 
     set(key:string, data: any){
-        this.db.push({id: key, data: data});
+        return axios.post(`${process.env.DB_IP}/set/${key}`,data, this.config);
     }
 
     update(key:string, data: any){
-        if(this.db.find(item => item.id == key)){
-            //Delete old one and store new one
-            this.db.splice(this.db.findIndex(item => item.id == key));
-            this.db.push({id: key, data: data});
-        }
+        return axios.post(`${process.env.DB_IP}/set/${key}`,data, this.config);
     }
 
     get(key: string): any{
-        return this.db.find(item => item.id == key);
+        return axios.get(`${process.env.DB_IP}/get/${key}`, this.config);
     }
 
     getAll(){
-        return this.db;
+        return axios.get(`${process.env.DB_IP}/all`, this.config);
     }
 
     remove(key: string){
-        this.db = this.db.filter(item => item.id != key);
+        return axios.get(`${process.env.DB_IP}/remove/${key}`, this.config);
     }
+
 }
 
 export class DatabaseHandler{
