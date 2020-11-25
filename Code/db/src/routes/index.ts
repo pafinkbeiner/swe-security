@@ -11,7 +11,44 @@ const router = express.Router();
  * Returns data to a specific key
  */
 router.get("/",function(req, res, next) {
-  res.json("SWE-SECURITY DB");
+  
+  const info = {
+    name: "SWE-DB",
+    routes: [
+      {
+        name: "GET",
+        route: "/get/:key",
+        method: "GET"
+      },
+      {
+        name: "SET",
+        route: "/get/:key",
+        method: "POST"
+      },
+      {
+        name: "SET",
+        route: "/set/:key/:data",
+        method: "GET"
+      },
+      {
+        name: "ALL",
+        route: "/all",
+        method: "GET"
+      },
+      {
+        name: "Delete",
+        route: "/delete/:key",
+        method: "GET"
+      },
+      {
+        name: "Wipe",
+        route: "/wipe",
+        method: "GET"
+      }
+    ]
+  }
+  
+  res.json(info);
 });
 
 /* 
@@ -34,9 +71,9 @@ router.get("/get/:key",authMiddleware, function(req, res, next) {
 router.post("/set/:key",authMiddleware, function(req, res, next) {
   
   if(req.params.key == undefined) res.json(errorStatus.msg=`Key was not provided`);
-  if(req.body.data == undefined) res.json(errorStatus.msg=`Data was not provided`);
+  if(req.body == undefined) res.json(errorStatus.msg=`Data was not provided`);
 
-  DatabaseHandler.getDbInstance().set(req.params.key, req.body.data);
+  DatabaseHandler.getDbInstance().set(req.params.key, req.body);
 
   res.json(successStatus.msg=`Item with id ${req.params.key} was added successfully`);
 });

@@ -14,7 +14,7 @@ dotenv_1.default.config();
 var app = express_1.default();
 // port is now available to the Node.js runtime
 // as if it were an environment variable
-var port = normalizePort(process.env.SERVER_PORT || 5000);
+var port = normalizePort(process.env.SERVER_PORT || 5002);
 // Configure Express to parse JSON
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
@@ -37,7 +37,7 @@ app.use(function (err, req, res, next) {
 // start the express server
 app.listen(port, function () {
     // tslint:disable-next-line:no-console
-    console.log("Server started at http://localhost:" + port);
+    console.log("DB started at http://localhost:" + port);
 });
 app.on("error", onError);
 /**
