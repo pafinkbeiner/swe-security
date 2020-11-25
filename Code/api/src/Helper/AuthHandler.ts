@@ -12,6 +12,7 @@ export async function login(username: string, password:string){
     LogHandler.getLogInstance().log(`info that user with username: ${username} tried to login`);
 
     let user;
+    
     try{
         user = await (await DatabaseHandler.getDbInstance().get(username)).data;
     }catch{
@@ -19,22 +20,14 @@ export async function login(username: string, password:string){
     }
 
     if(user != undefined){
-       
-        console.log("Compare: "+password+" with: "+ user.password);
-        const result = bcrypt.compareSync(password, user.password);
 
-        console.log(result)
-
-        if(result){
+        if(bcrypt.compareSync(password, user.password)){
             return {key: jwt.sign(user,"secret")};
         }
 
     }else{
         return undefined;
     }
-
-
-
 }
 
 export async function register(username: string, password:string, mail:string){

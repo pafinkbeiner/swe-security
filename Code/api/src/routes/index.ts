@@ -12,17 +12,18 @@ router.get("/", async (req, res, next) => {
 
 router.post("/login", async (req, res, next) => {
 
-  if(req.body.username == undefined) res.status(400);
-  if(req.body.password == undefined) res.status(400);
+  if(req.body.username == undefined) res.status(400).json({error: "Username was not provided"});
+  if(req.body.password == undefined) res.status(400).json({error: "Password was not provided"});
 
   if(req.body.username != undefined && req.body.password != undefined){
 
     const result = await AuthHandler.login(req.body.username, req.body.password)
-    
+
     if(result != undefined){
-      res.json(result)
+      res.json(result);
+      LogHandler.getLogInstance().log(`info that login of ${req.body.username} was performed successfully!`);
     }else{
-      res.status(400);
+      res.status(400).json({error: "Login was not successfull"});
     }
 
   }
@@ -31,9 +32,9 @@ router.post("/login", async (req, res, next) => {
 
 router.post("/register", async (req, res, next) => {
 
-  if(req.body.username == undefined) res.status(400);
-  if(req.body.password == undefined) res.status(400);
-  if(req.body.mail == undefined) res.status(400);
+  if(req.body.username == undefined) res.status(400).json({error: "Username was not provided"});
+  if(req.body.password == undefined) res.status(400).json({error: "Password was not provided"});
+  if(req.body.mail == undefined) res.status(400).json({error: "Mail was not provided"});
 
   if(req.body.username != undefined && req.body.password != undefined && req.body.mail != undefined){
 
@@ -42,7 +43,7 @@ router.post("/register", async (req, res, next) => {
     if(result != undefined){
       res.json(result)
     }else{
-      res.status(400);
+      res.status(400).json({error: "Register was not successfull"});
     }
 
   }
