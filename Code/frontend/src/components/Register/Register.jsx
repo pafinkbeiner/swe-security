@@ -1,17 +1,18 @@
 import React, { Component } from "react";
-import {useHistory} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Register.scss";
 
 export default class Login extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       username: "",
       password: "",
+      redirect: null
     };
     this.onSubmit = this.onSubmit.bind(this);
-    this.canLogin = this.canLogin.bind(this);
   }
 
   canLogin() {
@@ -28,26 +29,36 @@ export default class Login extends Component {
     const auth = false;
 
     if(auth){
-        this.props.history.push("/items");
+        const { cookies } = this.props;
+        cookies.set("jwt", cookies, { path: "/" }); // setting the cookie
+        this.setState({redirect: true})
     }else{
-        this.props.history.push("/it");
+        this.setState({
+            redirect: null,
+            username: "",
+            password: ""
+        });
     }
 
   }
 
   render() {
-    return (
-      <div className="background">
-        <div className="login">
-          <form onSubmit={this.onSubmit}>
-
-            <input type="text" value={this.state.username} placeholder="username" onChange={(e) => this.setState({ username: e.target.value })}></input>
-            <input type="password" value={this.state.password} placeholder="password" onChange={(e) => this.setState({ password: e.target.value })}></input>
-            <input type="submit"></input>
-
-          </form>
-        </div>
-      </div>
-    );
+    if (this.state.redirect) {
+        return <Redirect to={"/items"} />
+    }else{
+        return (
+            <div className="background">
+              <div className="login">
+                <form onSubmit={this.onSubmit}>
+      
+                  <input type="text" value={this.state.username} placeholder="username" onChange={(e) => this.setState({ username: e.target.value })}></input>
+                  <input type="password" value={this.state.password} placeholder="password" onChange={(e) => this.setState({ password: e.target.value })}></input>
+                  <input type="submit"></input>
+      
+                </form>
+              </div>
+            </div>
+          );
+    }
   }
 }
