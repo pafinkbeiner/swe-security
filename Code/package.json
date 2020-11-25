@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "run-p api db",
+    "start": "run-p api db frontend",
     "api": "(cd api && npm run start:dev)",
     "db": "(cd db && npm run start:dev)",
     "bank": "(cd bank && npm run start:dev)",
