@@ -7,8 +7,7 @@ const router = express.Router();
 
 /* GET home page. */
 router.get("/", async (req, res, next) => {
-  const result: any = await (await DatabaseHandler.getDbInstance().getAll()).data;
-  res.json(result)
+  res.json("SWE SHOP API");
 });
 
 router.post("/login", async (req, res, next) => {

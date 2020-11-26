@@ -5,6 +5,7 @@ import path from "path";
 import indexRouter from "./routes/index"
 import logRouter from "./routes/logs"
 import itemRouter from "./routes/items"
+import adminRouter from "./routes/admin"
 import cors from "cors";
 const createError = require("http-errors");
 
@@ -38,6 +39,7 @@ app.use(function(req, res, next) {
 app.use("/", indexRouter);
 app.use("/logs", logRouter);
 app.use("/items", itemRouter);
+app.use("/admin", adminRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => next(createError(404)));

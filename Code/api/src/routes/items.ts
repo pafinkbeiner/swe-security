@@ -27,4 +27,14 @@ router.get("/",allowCustomer,async(req:any, res:any, next:any) => {
 
 });
 
+router.get("/:name", allowCustomer, async(req: any, res:any, next:any) => {
+
+  if(items.find(item => item.name == req.params.name) != undefined){
+    res.json(items.find(item => item.name == req.params.name));
+  }else{
+    res.status(400).json({error: "Item with specified name could not be found!"});
+  }
+
+})
+
 export default router;

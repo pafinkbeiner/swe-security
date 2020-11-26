@@ -6,5 +6,5 @@ export interface User{
     mail: string;
     password: string;
     role: Role; 
-    boughtItems?: Array<Item>
+    boughtItems?: Array<Item>;
 }
