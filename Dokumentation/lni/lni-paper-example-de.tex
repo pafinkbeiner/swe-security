@@ -346,7 +346,7 @@ Adresse sind durch Anmeldename und Kennwort geschützt. Um zu verhindern, dass e
 
 \subsection{Authentifizierung}
 
-Authentifizierung sogrt dafür, dass ein Benutzer gegenüber einem System verifiziert werden kann.
+Authentifizierung sorgt dafür, dass ein Benutzer gegenüber einem System verifiziert werden kann.
 Der Begriff der Authentifizierung wird oft synonym mit den Begriffen Authentisierung und Autorisierung verwendet. 
 Die Authentifizierung lässt sich in weitere Bestandteile untergliedern. Der erste Bestandteil ist die Authentisierung, 
 wobei der Benutzer gegenüber dem System eine Identität vorgibt, die von diesem bestätigt werden soll. 
@@ -497,6 +497,12 @@ Die Speicherung der Benutzerdaten durch den Node.js Server (API) wurde mittels e
 Die in der Abbildung dargestellte Abbildung beschreibt, vereinfacht dargestellt, den Zusammenhang der einzelnen Komponenten. 
 Ein Einblick in die konkrete Implementierung der Komponenten und Schnittstellen soll in den nächsten Abschnitten erfolgen. 
 
+\subsection{Authentifizierung}
+
+Authentifizierung sorgt dafür, dass ein Benutzer gegenüber einem System verifiziert werden kann.
+Die Verifizierung erfolgt hierbei konventionell mit Wissen, also Benutzername und Passwort.
+TODO: Genaue Erklärung der Verifikation mit JWT
+
 \subsection{Vertraulichkeit und Zugriffssteuerung}
 
 Der Sicherheitdienst der Vertraulichkeit macht bestimmte Teile der Anwendung nur für einen Teil der Benutzer sichtbar. 
@@ -508,9 +514,11 @@ Rollen die ein Benutzer annehmen kann sind:
   \item Guest
 \end{itemize}
 
+Ein Benutzer der über die Rolle "Guest" verfügt soll lediglich in die Lage sein die Items auf der Website anzuschauen. 
+Ist ein Benutzer angemeldet, verfügt dieser über die Rolle "Customer" und darf Artikel einkaufen. 
+Ein Benutzer mit der Rolle Administrator kann auf eine spezielle Administrator Seite zugreifen, die ihm eine Übersicht über 
+alle Benutzerdaten liefert. 
 
-
-\subsection{Authentifizierung}
 \subsection{Integrität}
 \subsection{Nicht-Anfechtbarkeit}
 \subsection{Verfügbarkeit}
