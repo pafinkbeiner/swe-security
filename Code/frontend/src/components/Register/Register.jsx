@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {Redirect} from "react-router-dom";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Register.scss";
+import axios from 'axios';
 
 export default class Login extends Component {
 
@@ -26,11 +27,17 @@ export default class Login extends Component {
     console.log(this.state.username);
     console.log(this.state.password);
 
-    const auth = false;
+    //Anfrage 
+
+    const auth = await axios.post('http://localhost:5001/register',{
+        username: this.state.username,
+        password: this.state.password
+    });
+
+    console.log("Register failed: ", auth);
 
     if(auth){
-        const { cookies } = this.props;
-        cookies.set("jwt", cookies, { path: "/" }); // setting the cookie
+        localStorage.setItem('key', auth.key);
         this.setState({redirect: true})
     }else{
         this.setState({
