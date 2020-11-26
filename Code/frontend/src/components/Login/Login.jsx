@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Login.scss";
 import axios from 'axios';
-import {Redirect} from "react-router-dom";
+import {Redirect, Link} from "react-router-dom";
 
 export default class Login extends Component {
   constructor(props) {
@@ -49,6 +49,9 @@ export default class Login extends Component {
   }else{
     return (
       <div className="background">
+                <Link color="white" to="/register" title="Register" >
+                <button>Register</button>
+              </Link>
         <div className="login">
           <form onSubmit={this.onSubmit}>
             <FormGroup controlId="username" className="form-row">

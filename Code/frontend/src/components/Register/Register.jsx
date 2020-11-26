@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Redirect} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Register.scss";
 import axios from 'axios';
@@ -53,6 +53,9 @@ export default class Login extends Component {
     }else{
         return (
             <div className="background">
+              <Link color="white" to="/login" title="Login" >
+                <button>Login</button>
+              </Link>
               <div className="login">
                 <form onSubmit={this.onSubmit}>
       
