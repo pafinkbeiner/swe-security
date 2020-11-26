@@ -18,7 +18,7 @@ export function allowCustomer(req: Request, res: Response ,next: NextFunction){
             if(err){
                 res.status(400).json({error: "Verification was not successfull"});
             }else{
-                if(authData.role == Role.Customer){
+                if(authData.role == 1 || authData.role == 2){
                     next();
                 }else{
                     res.status(400).json({error: "Wrong Role!"});
@@ -44,7 +44,7 @@ export function allowAdministrator(req: Request, res: Response ,next: NextFuncti
             if(err){
                 res.status(400).json({error: "Verification was not successfull"});
             }else{
-                if(authData.role == Role.Administrator){
+                if(authData.role == 1){
                     next();
                 }else{
                     res.status(400).json({error: "Wrong Role!"});
@@ -67,8 +67,7 @@ export function authMiddleware(req: Request, res: Response ,next: NextFunction){
 
         const token = bearer.split(" ")[1];
 
-        jwt.verify(token, "secret", (err:any, authData: any) => {
-
+        jwt.verify(token, "secret", (err:any, authData: any) => {;
             if(err){
                 res.status(400).json({error: "Verification was not successfull"});
             }else{

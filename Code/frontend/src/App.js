@@ -17,11 +17,18 @@ function App() {
     </div>
   }
 
+  const adminView = () => {
+    return <div>
+      <Navigation/>
+      <Admin/>
+    </div>
+  }
+
   return (
     <CookiesProvider>
       <Router>
         <Switch>
-          <Route path="/admin" component={Admin}/>
+          <Route path="/admin" component={adminView}/>
           <Route path="/items" component={normalView} />
           <Route path="/login" component={Login}/>
           <Route path="/" component={Register}/>

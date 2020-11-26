@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Login.scss";
+import axios from 'axios';
+import {Redirect} from "react-router-dom";
 
 export default class Login extends Component {
   constructor(props) {
@@ -17,12 +19,34 @@ export default class Login extends Component {
     return this.state.username.length === 0 || this.state.password.length === 0;
   }
 
-  onSubmit() {
-    console.log(this.state.username);
-    console.log(this.state.password);
+  onSubmit = (e) => {
+    e.preventDefault();
+
+    axios.post('http://localhost:5001/login',{
+        username: this.state.username,
+        password: this.state.password,
+    }).then(auth => {
+
+        if(auth){
+            localStorage.setItem('key', auth.data.key);
+            this.setState({redirect: true})
+        }else{
+            this.setState({
+                redirect: null,
+                username: "",
+                password: ""
+            });
+        }
+    }).catch(err => {
+        console.log(err);
+    });
   }
 
   render() {
+
+    if (this.state.redirect) {
+      return <Redirect to={"/items"} />
+  }else{
     return (
       <div className="background">
         <div className="login">
@@ -53,5 +77,8 @@ export default class Login extends Component {
         </div>
       </div>
     );
+  }
+
+
   }
 }
