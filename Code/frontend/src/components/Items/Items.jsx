@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import './Items.scss';
 
 export default class Items extends Component {
 
@@ -29,7 +30,6 @@ export default class Items extends Component {
                 this.state.items.map(item => {
                     return <div key={item.name} className="item">
                         <p>{item.name}</p>
-                        <p>{item.description}</p>
                         <p>{item.price}</p>
                         {item.image.map(image => {
                             return <img key={image} alt="image" height={100} src={image}/>
