@@ -10,7 +10,7 @@ const items: Item[] = [
     name: "Item1",
     description: "Description",
     price: 52,
-    image: ["https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg"]
+    image: ["https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg", "https://avatars0.githubusercontent.com/u/59596944?s=460&u=c8299afd7d313d337d0e07b3c978f354541eb343&v=4"]
   }, 
   {
     name: "Item2",
