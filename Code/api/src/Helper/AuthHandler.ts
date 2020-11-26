@@ -72,7 +72,8 @@ export async function register(username: string, password:string, mail:string){
         username: username,
         password: bcrypt.hashSync(password, 5),
         mail: mail,
-        role: Role.Customer
+        role: Role.Customer,
+        boughtItems: undefined
     }
 
     DatabaseHandler.getDbInstance().set(username, user);

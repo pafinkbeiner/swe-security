@@ -1,3 +1,4 @@
+import { Item } from "./Item";
 import { Role } from "./Role";
 
 export interface User{
@@ -5,4 +6,5 @@ export interface User{
     mail: string;
     password: string;
     role: Role; 
+    boughtItems?: Array<Item>
 }
