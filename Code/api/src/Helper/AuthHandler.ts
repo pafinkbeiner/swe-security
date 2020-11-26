@@ -30,6 +30,7 @@ export function allowCustomer(req: Request, res: Response ,next: NextFunction){
         res.status(400).json({error: "Bearer token was not provided"});
     }
 }
+
 export function allowAdministrator(req: Request, res: Response ,next: NextFunction){
 
     let bearer: any = req.headers["authorization"];
