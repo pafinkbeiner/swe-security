@@ -2,6 +2,7 @@ import * as express from "express";
 import {DatabaseHandler } from "../Helper/Database";
 import { LogHandler } from "../Helper/Log";
 import * as AuthHandler from "../Helper/AuthHandler";
+
 const router = express.Router();
 
 /* GET home page. */

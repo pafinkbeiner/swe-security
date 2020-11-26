@@ -1,5 +1,7 @@
 import * as express from "express";
+import { authMiddleware } from "../Helper/AuthHandler";
 import { Item } from "../models/Item";
+import cors from "cors";
 
 const router = express.Router();
 
@@ -19,7 +21,7 @@ const items: Item[] = [
 ]
 
 /* GET home page. */
-router.get("/", async(req, res, next) => {
+router.get("/",authMiddleware,async(req:any, res:any, next:any) => {
   
   res.json(items);
 

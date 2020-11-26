@@ -5,6 +5,7 @@ import path from "path";
 import indexRouter from "./routes/index"
 import logRouter from "./routes/logs"
 import itemRouter from "./routes/items"
+import cors from "cors";
 const createError = require("http-errors");
 
 // initialize configuration
@@ -23,6 +24,15 @@ app.use(cookieParser());
 
 // Configure Express to serve static files in the public folder
 app.use( express.static( path.join( __dirname, "public" ) ) );
+
+app.use(cors());
+
+// Allow cors
+app.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+});
 
 // Configure routes
 app.use("/", indexRouter);

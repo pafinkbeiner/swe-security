@@ -11,6 +11,7 @@ export default class Login extends Component {
     this.state = {
       username: "",
       password: "",
+      mail: "",
       redirect: null
     };
     this.onSubmit = this.onSubmit.bind(this);
@@ -24,28 +25,25 @@ export default class Login extends Component {
 
     e.preventDefault();
 
-    console.log(this.state.username);
-    console.log(this.state.password);
-
-    //Anfrage 
-
-    const auth = await axios.post('http://localhost:5001/register',{
+    axios.post('http://localhost:5001/register',{
         username: this.state.username,
-        password: this.state.password
+        password: this.state.password,
+        mail: this.state.mail
+    }).then(auth => {
+
+        if(auth){
+            localStorage.setItem('key', auth.data.key);
+            this.setState({redirect: true})
+        }else{
+            this.setState({
+                redirect: null,
+                username: "",
+                password: ""
+            });
+        }
+    }).catch(err => {
+        console.log(err);
     });
-
-    console.log("Register failed: ", auth);
-
-    if(auth){
-        localStorage.setItem('key', auth.key);
-        this.setState({redirect: true})
-    }else{
-        this.setState({
-            redirect: null,
-            username: "",
-            password: ""
-        });
-    }
 
   }
 
@@ -60,6 +58,7 @@ export default class Login extends Component {
       
                   <input type="text" value={this.state.username} placeholder="username" onChange={(e) => this.setState({ username: e.target.value })}></input>
                   <input type="password" value={this.state.password} placeholder="password" onChange={(e) => this.setState({ password: e.target.value })}></input>
+                  <input type="mail" value={this.state.mail} placeholder="mail" onChange={(e) => this.setState({ mail: e.target.value })}></input>
                   <input type="submit"></input>
       
                 </form>
