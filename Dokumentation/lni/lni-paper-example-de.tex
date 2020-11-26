@@ -497,12 +497,22 @@ Die Speicherung der Benutzerdaten durch den Node.js Server (API) wurde mittels e
 Die in der Abbildung dargestellte Abbildung beschreibt, vereinfacht dargestellt, den Zusammenhang der einzelnen Komponenten. 
 Ein Einblick in die konkrete Implementierung der Komponenten und Schnittstellen soll in den nächsten Abschnitten erfolgen. 
 
-\subsection{Vertraulichkeit}
+\subsection{Vertraulichkeit und Zugriffssteuerung}
+
+Der Sicherheitdienst der Vertraulichkeit macht bestimmte Teile der Anwendung nur für einen Teil der Benutzer sichtbar. 
+Das Beispiel verfügt über eine Rollenbasierte Zugriffssteuerung. 
+Rollen die ein Benutzer annehmen kann sind: 
+\begin{itemize}
+  \item Administrator
+  \item Customer
+  \item Guest
+\end{itemize}
+
+
 
 \subsection{Authentifizierung}
 \subsection{Integrität}
 \subsection{Nicht-Anfechtbarkeit}
-\subsection{Zugriffssteuerung}
 \subsection{Verfügbarkeit}
 
 \section{Fazit}
