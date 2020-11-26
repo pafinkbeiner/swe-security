@@ -1,0 +1,41 @@
+
+> code@1.0.0 start C:\Users\SRV-WIN-10\Documents\swe-security\swe-security\Code
+> run-p api db frontend
+
+
+> code@1.0.0 frontend C:\Users\SRV-WIN-10\Documents\swe-security\swe-security\Code
+> (cd frontend && npm run start)
+
+
+> code@1.0.0 db C:\Users\SRV-WIN-10\Documents\swe-security\swe-security\Code
+> (cd db && npm run start:dev)
+
+
+> code@1.0.0 api C:\Users\SRV-WIN-10\Documents\swe-security\swe-security\Code
+> (cd api && npm run start:dev)
+
+
+> frontend@0.1.0 start C:\Users\SRV-WIN-10\Documents\swe-security\swe-security\Code\frontend
+> react-scripts start
+
+
+> machine@1.0.0 start:dev C:\Users\SRV-WIN-10\Documents\swe-security\swe-security\Code\db
+> nodemon
+
+
+> machine@1.0.0 start:dev C:\Users\SRV-WIN-10\Documents\swe-security\swe-security\Code\api
+> nodemon
+
+[33m[nodemon] 2.0.5[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): src\**\*[39m
+[33m[nodemon] watching extensions: ts,js[39m
+[32m[nodemon] starting `ts-node ./src/index.ts`[39m
+[33m[nodemon] 2.0.5[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): src\**\*[39m
+[33m[nodemon] watching extensions: ts,js[39m
+[32m[nodemon] starting `ts-node ./src/index.ts`[39m
+DB started at http://localhost:5002
+API started at http://localhost:5001
+Batchvorgang abbrechen (J/N)? 

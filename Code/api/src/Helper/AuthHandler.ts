@@ -6,6 +6,58 @@ import { Role } from "../models/Role";
 import { LogHandler } from "./Log";
 import { NextFunction, Request, Response } from "express";
 
+export function allowCustomer(req: Request, res: Response ,next: NextFunction){
+    let bearer: any = req.headers["authorization"];
+
+    if(bearer != undefined){
+
+        const token = bearer.split(" ")[1];
+
+        jwt.verify(token, "secret", (err:any, authData: any) => {
+
+            if(err){
+                res.status(400).json({error: "Verification was not successfull"});
+            }else{
+                if(authData.role == Role.Customer){
+                    next();
+                }else{
+                    res.status(400).json({error: "Wrong Role!"});
+                }
+            }
+        });
+
+    }else{
+        res.status(400).json({error: "Bearer token was not provided"});
+    }
+}
+export function allowAdministrator(req: Request, res: Response ,next: NextFunction){
+
+    let bearer: any = req.headers["authorization"];
+
+    if(bearer != undefined){
+
+        const token = bearer.split(" ")[1];
+
+        jwt.verify(token, "secret", (err:any, authData: any) => {
+
+            if(err){
+                res.status(400).json({error: "Verification was not successfull"});
+            }else{
+                if(authData.role == Role.Administrator){
+                    next();
+                }else{
+                    res.status(400).json({error: "Wrong Role!"});
+                }            
+            }
+
+        });
+
+    }else{
+        res.status(400).json({error: "Bearer token was not provided"});
+    }
+
+}
+
 export function authMiddleware(req: Request, res: Response ,next: NextFunction){
 
     let bearer: any = req.headers["authorization"];
@@ -19,8 +71,11 @@ export function authMiddleware(req: Request, res: Response ,next: NextFunction){
             if(err){
                 res.status(400).json({error: "Verification was not successfull"});
             }else{
-                next();
-            }
+                if(authData.role == Role.Guest || authData.role == Role.Customer || authData.role == Role.Administrator){
+                    next();
+                }else{
+                    res.status(400).json({error: "Wrong Role!"});
+                }            }
 
         });
 
