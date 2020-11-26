@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Login from './components/Login';
+import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import { CookiesProvider } from "react-cookie"
