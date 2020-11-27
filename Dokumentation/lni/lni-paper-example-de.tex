@@ -501,7 +501,13 @@ Ein Einblick in die konkrete Implementierung der Komponenten und Schnittstellen 
 Authentifizierung sorgt dafür, dass ein Benutzer gegenüber einem System verifiziert werden kann.
 Die Verifizierung erfolgt hierbei konventionell mit Wissen, also Benutzername und Passwort.
 Nach dem Übertragen der Benutzerdaten wird von der API ein Token zurückgeschickt.
-
+Ein, mittels Token gestützes Authentifizierungsverfahren, bietet die Möglichkeit den Benutzer mittels 
+der API mit einem temporären Token anstatt seiner Benutzerdaten zu authentifizieren. 
+Für das Beispiel wurden hierfür JSON Web Tokens \cite{JWT} eingesetzt. 
+Der Vorteil von JSON Web Tokens liegt darin, dass der Token zusätzliche eingebettete Informationen
+enthalten kann. 
+DIe zusätzlichen Informationen können von dem Client genutzt werden um dem Benutzer 
+nur Zugriff auf einen Teil der An
 
 \begin{figure}
   \centering
