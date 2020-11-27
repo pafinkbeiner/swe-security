@@ -8,6 +8,7 @@ import Items from "./components/Items/Items";
 import Admin from "./components/Admin/Admin";
 import Navigation from "./components/Navigation/Navigation";
 import SelectedItem from './components/Items/SelectedItem';
+import Purchase from "./pages/Purchase/Purchase";
 
 function App() {
   const normalView = () => {
@@ -35,6 +36,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/" component={Register} />
           <Route exact path="/items/:name" component={SelectedItem} />
+          <Route exact path="/purchase/:name" component={Purchase} />
         </Switch>
       </Router>
     </CookiesProvider>

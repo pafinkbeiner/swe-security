@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default class SelectedItem extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ export default class SelectedItem extends Component {
               <p className="price">{this.state.item.price}€</p>
             </div>
           </div>
+          <Link to={`/purchase/${this.state.item.name}`}>Purchase</Link>
         </div>
       );
     } else {
