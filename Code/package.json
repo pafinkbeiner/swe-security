@@ -8,9 +8,7 @@
     "start": "run-p api db frontend",
     "api": "(cd api && npm run start:dev)",
     "db": "(cd db && npm run start:dev)",
-    "bank": "(cd bank && npm run start:dev)",
     "frontend": "(cd frontend && npm run start)",
-    "payment-gateway": "(cd payment-gateway && npm run start:dev)"
   },
   "keywords": [],
   "author": "",
