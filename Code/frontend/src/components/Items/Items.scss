@@ -10,9 +10,12 @@
 .item-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  align-content: center;
   .item {
     margin: 2rem;
+
+    .price {
+        justify-content: flex-end;
+    }
   }
 }
+
