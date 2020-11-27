@@ -18,7 +18,7 @@ const items: Item[] = [
     name: "Linux Ubuntu ISO",
     description: "Linux Ubuntu ISO 20.04.1 LTS",
     price: 3,
-    image: ["https://assets.ubuntu.com/v1/57a889f6-ubuntu-logo112.png","https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Desktop_Ubuntu_20.04.png/1200px-Desktop_Ubuntu_20.04.png"],
+    image: ["https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png","https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Desktop_Ubuntu_20.04.png/1200px-Desktop_Ubuntu_20.04.png"],
     downloadLink: "https://releases.ubuntu.com/20.04.1/ubuntu-20.04.1-desktop-amd64.iso"
   }, 
   {
