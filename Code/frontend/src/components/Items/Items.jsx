@@ -31,16 +31,16 @@ export default class Items extends Component {
         <div className="item-container">
           {this.state.items.map((item) => {
             return (
-              <div class="card">
+              <div className="card">
                 <img
-                  class="card-img-top"
+                  className="card-img-top"
                   src={item.image[0]}
                   alt="Card image cap"
                 />
-                <div class="card-body">
-                  <h5 class="card-title">{item.name}</h5>
-                  <p class="card-text">{item.price}€</p>
-                  <Link to={`/items/${item.name}`} class="btn btn-primary">
+                <div className="card-body">
+                  <h5 className="card-title">{item.name}</h5>
+                  <p className="card-text">{item.price}€</p>
+                  <Link to={`/items/${item.name}`} className="btn btn-primary">
                     View
                   </Link>
                 </div>
