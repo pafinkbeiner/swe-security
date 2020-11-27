@@ -479,7 +479,6 @@ bringen, müssen Load-Balancing-Mechanismen verwendet werden. Dies sind Mechanis
 Eingesetzt wird dies zum Beispiel bei allen großen Streaming Anbietern wie etwa Netflix.
 
 \section{Sicherheit verteilter Systeme in der Praxis}
-\section{Implementierung}
 
 Die Schutzziele stellen in dem IT-Umfeld einen wichtigen Bestandteil da. Auch wenn unter den entsprechenden Punkten Beispiele der Implementierung geliefert wurden, 
 soll in dem folgenden Teil eine konkrete Beispielimplementierung anhand einer Beispielimplementierung erfolgen. 
@@ -502,6 +501,16 @@ Ein Einblick in die konkrete Implementierung der Komponenten und Schnittstellen 
 Authentifizierung sorgt dafür, dass ein Benutzer gegenüber einem System verifiziert werden kann.
 Die Verifizierung erfolgt hierbei konventionell mit Wissen, also Benutzername und Passwort.
 TODO: Genaue Erklärung der Verifikation mit JWT
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{images/token-auth.png}
+  \caption[Token Authentification]{Token Authentification} 
+  \label{token-auth}
+  \cite{OktaJWTAuth}
+\end{figure} 
+
 
 \subsection{Vertraulichkeit und Zugriffssteuerung}
 
