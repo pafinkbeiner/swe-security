@@ -506,8 +506,9 @@ der API mit einem temporären Token anstatt seiner Benutzerdaten zu authentifizi
 Für das Beispiel wurden hierfür JSON Web Tokens \cite{JWT} eingesetzt. 
 Der Vorteil von JSON Web Tokens liegt darin, dass der Token zusätzliche eingebettete Informationen
 enthalten kann. 
-DIe zusätzlichen Informationen können von dem Client genutzt werden um dem Benutzer 
-nur Zugriff auf einen Teil der An
+Die zusätzlichen Informationen können von dem Client genutzt werden um dem Benutzer 
+nur Zugriff auf einen Teil der Anwendung zu gewähren. 
+Hier ist eine Grafik die, die Kommunikation der Komponenten anschaulich darstellt.
 
 \begin{figure}
   \centering
@@ -517,6 +518,37 @@ nur Zugriff auf einen Teil der An
   \cite{OktaJWTAuth}
 \end{figure} 
 
+Nachdem der Benutzer seine Daten in die Entsprechenden Felder eingegeben hat, werden die Daten 
+mittels HTTP-POST an die API übertragen.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{images/register_obtain_token.png}
+  \caption[Obtain JWT Token]{Obtain JWT Token} 
+  \label{get-token-from-api}
+\end{figure} 
+
+Werden die korrekten Anmeldedaten eingegeben bzw. registriert sich der Benutzer an der 
+Anwendung, sendet der Server als Antwort einen Token. 
+Der JWT-Token besteht aus drei wichtigen Informationen: Header, Payload und Verify Signature.
+Die drei Informationen wurden auf dem Server codiert und als Zeichenkette zurückgegeben. 
+Die Zeichenkette wird in den localStorage des Client gespeichert. Wird anschließend eine 
+geschützte Ressource von dem Server angefragt wird der Token aus dem localStorage geholt 
+und in den Header der Anfrage geschrieben.
+Auf der API durchläuft die Anfrage mehrere Middlewares. 
+Bei geschützten Ressourcen wird wie in der folgenden Darstellung eine Middleware 
+zwischengeschaltet. 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{images/allow_customer.png}
+  \caption[Allow Customer Middleware]{Allow Customer Middleware} 
+  \label{allow-cutomer-middleware}
+\end{figure} 
+
+Die Middleware gibt die Anfrage an die nachfolgende Middleware weiter wenn der im Header enthaltene 
+Token korrekt ist. Ist der Token nicht korrekt gelangt die Anfrage erst gar nicht an die nächste Funktion die,
+die eigentlichen Inhalte zurückgeben würde.
 
 \subsection{Vertraulichkeit und Zugriffssteuerung}
 
