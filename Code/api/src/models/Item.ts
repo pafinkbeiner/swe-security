@@ -3,4 +3,6 @@ export interface Item{
     description: string;
     price: number;
     image: Array<string>;
+    downloadLink: string;
+    sha265Sum?: string;
 }
