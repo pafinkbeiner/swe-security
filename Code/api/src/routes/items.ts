@@ -31,7 +31,8 @@ const items: Item[] = [
 ]
 
 /* GET home page. */
-router.get("/",allowCustomer,async(req:any, res:any, next:any) => {
+
+router.get("/", allowCustomer, async(req:any, res:any, next:any) => {
   
   res.json(items);
 
