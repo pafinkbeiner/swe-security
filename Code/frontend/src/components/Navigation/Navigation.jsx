@@ -22,7 +22,7 @@ export default class Navigation extends Component {
       return <Redirect to={"/"} />;
     } else {
       return (
-        <nav className="navbar navbar-light bg-light justify-content-between">
+        <nav className="navbar navbar-light bg-light navbar-expand-lg justify-content-between">
           <a className="navbar-brand">SWE SHOP</a>
           <ul className="navbar-nav mr-auto ml-4 ">
             <li className="nav-item">
