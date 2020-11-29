@@ -2,6 +2,7 @@ import * as express from "express";
 import {DatabaseHandler } from "../Helper/Database";
 import { LogHandler } from "../Helper/Log";
 import * as AuthHandler from "../Helper/AuthHandler";
+import jwt from "jsonwebtoken"
 
 const router = express.Router();
 
@@ -46,6 +47,29 @@ router.post("/register", async (req, res, next) => {
       res.status(400).json({error: "Register was not successfull"});
     }
 
+  }
+
+});
+
+router.get("/decodeJWT", async(req, res, next) => {
+
+  let bearer: any = req.headers["authorization"];
+
+  if(bearer != undefined){
+
+      const token = bearer.split(" ")[1];
+
+      jwt.verify(token, "secret", (err:any, authData: any) => {;
+          if(err){
+              res.status(400).json({error: "Verification was not successfull"});
+          }else{
+            res.json(authData)    
+          }
+
+      });
+
+  }else{
+      res.status(400).json({error: "Bearer token was not provided"});
   }
 
 });
