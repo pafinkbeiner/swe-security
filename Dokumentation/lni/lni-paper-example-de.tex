@@ -521,12 +521,21 @@ Hier ist eine Grafik die, die Kommunikation der Komponenten anschaulich darstell
 Nachdem der Benutzer seine Daten in die Entsprechenden Felder eingegeben hat, werden die Daten 
 mittels HTTP-POST an die API übertragen.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{images/register_obtain_token.png}
-  \caption[Obtain JWT Token]{Obtain JWT Token} 
-  \label{get-token-from-api}
-\end{figure} 
+\begin{verbatim}
+onSubmit = (e) => {
+  axios
+    .post("http://api.domain.com:5001/register", {
+      username: this.state.username,
+      password: this.state.password,
+      mail: this.state.mail,
+    })
+    .then((auth) => {
+      if (auth) {
+        localStorage.setItem("key", auth.data.key);
+      }
+    }
+}
+\end{verbatim}
 
 Werden die korrekten Anmeldedaten eingegeben bzw. registriert sich der Benutzer an der 
 Anwendung, sendet der Server als Antwort einen Token. 
@@ -539,12 +548,11 @@ Auf der API durchläuft die Anfrage mehrere Middlewares.
 Bei geschützten Ressourcen wird wie in der folgenden Darstellung eine Middleware 
 zwischengeschaltet. 
 
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{images/allow_customer.png}
-  \caption[Allow Customer Middleware]{Allow Customer Middleware} 
-  \label{allow-cutomer-middleware}
-\end{figure} 
+\begin{verbatim}
+router.get("/", allowCustomer, async(req, res, next) => {
+  res.json(item);
+});
+\end{verbatim}
 
 Die Middleware gibt die Anfrage an die nachfolgende Middleware weiter wenn der im Header enthaltene 
 Token korrekt ist. Ist der Token nicht korrekt gelangt die Anfrage erst gar nicht an die nächste Funktion die,
