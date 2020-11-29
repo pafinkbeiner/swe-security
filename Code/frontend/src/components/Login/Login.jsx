@@ -11,7 +11,7 @@ export default class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      err: undefined
+      err: false
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.canLogin = this.canLogin.bind(this);
@@ -86,7 +86,7 @@ export default class Login extends Component {
               <input class="btn btn-outline-primary" value="Login" type="submit"></input>
             </form>
           </div>
-          { this.state.err != undefined && <Alert message="Falsche Daten!"/>}
+          { this.state.err && <Alert message="Falsche Daten!"/>}
         </div>
       );
     }

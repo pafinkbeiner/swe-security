@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Register.scss";
 import axios from "axios";
+import Alert from "../Alert/Alert"
 
 export default class Login extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ export default class Login extends Component {
       password: "",
       mail: "",
       redirect: null,
+      err: false
     };
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -42,7 +44,7 @@ export default class Login extends Component {
         }
       })
       .catch((err) => {
-        console.log(err);
+        this.setState({err: true})
       });
   };
 
@@ -97,6 +99,7 @@ export default class Login extends Component {
               <input class="btn btn-outline-primary" value="Register" type="submit"></input>
             </form>
           </div>
+          { this.state.err && <Alert/>}
         </div>
       );
     }

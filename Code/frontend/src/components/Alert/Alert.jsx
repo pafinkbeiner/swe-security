@@ -4,13 +4,25 @@ export default class Alert extends Component {
 
     constructor(){
         super();
+        this.state = {
+          show: true
+        }
+    }
+
+    componentDidMount(){
+      //setTimeout(() => {this.setState({show: false})}, 5000)
     }
 
     render() {
-        return (
-            <div class="alert alert-primary" role="alert">
-                { this.props.message ? this.props.message : "alert!"}
+        if(this.state.show == true){
+          return (
+            <div class="alert alert-warning fixed-top" role="alert">
+                { this.props.message ? this.props.message : "An error occured while performing the operation!"}
             </div>
         )
+        }else{
+          return <></>
+        }
+
     }
 }
