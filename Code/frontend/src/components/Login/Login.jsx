@@ -3,6 +3,7 @@ import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Login.scss";
 import axios from "axios";
 import { Redirect, Link } from "react-router-dom";
+import Alert from "../Alert/Alert"
 
 export default class Login extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ export default class Login extends Component {
     this.state = {
       username: "",
       password: "",
+      err: undefined
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.canLogin = this.canLogin.bind(this);
@@ -40,7 +42,7 @@ export default class Login extends Component {
         }
       })
       .catch((err) => {
-        console.log(err);
+        this.setState({err: true})
       });
   };
 
@@ -84,6 +86,7 @@ export default class Login extends Component {
               <input class="btn btn-outline-primary" value="Login" type="submit"></input>
             </form>
           </div>
+          { this.state.err != undefined && <Alert message="Falsche Daten!"/>}
         </div>
       );
     }
