@@ -32,13 +32,13 @@ const items: Item[] = [
 
 /* GET home page. */
 
-router.get("/", allowCustomer, async(req:any, res:any, next:any) => {
+router.get("/", async(req:any, res:any, next:any) => {
   
   res.json(items);
 
 });
 
-router.get("/:name", allowCustomer, async(req: any, res:any, next:any) => {
+router.get("/:name", async(req: any, res:any, next:any) => {
 
   if(items.find(item => item.name == req.params.name) != undefined){
     res.json(items.find(item => item.name == req.params.name));

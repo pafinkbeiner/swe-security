@@ -1,12 +1,32 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import "../Navigation/Navigation.scss"
+import axios from "axios"
 
 export default class Navigation extends Component {
   constructor() {
     super();
-    this.state = { redirect: null };
+    this.state = { redirect: undefined, user: undefined };
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentDidMount(){
+
+    axios
+      .get("http://localhost:5001/decodeJWT", {
+        headers: { Authorization: `Bearer ${localStorage.getItem("key")}` }, 
+      })
+      .then((res) => {
+        if (res) {
+          this.setState({ user: res.data });
+        } else {
+          this.setState({user: undefined});
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
   }
 
   onSubmit = (e) => {
@@ -30,11 +50,15 @@ export default class Navigation extends Component {
                 Items
               </Link>
             </li>
-            <li className="nav-item">
+            { 
+              (this.state.user != undefined && this.state.user.role == 1) &&
+              <li className="nav-item">
               <Link className="nav-link" to="/admin">
                 Admin
               </Link>
             </li>
+            }
+
           </ul>
           <form className="form-inline" onSubmit={this.onSubmit}>
             <button

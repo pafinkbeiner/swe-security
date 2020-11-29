@@ -10,6 +10,7 @@ export default class SelectedItem extends Component {
     super(props);
     this.state = {
       item: undefined,
+      user: undefined,
     };
   }
 
@@ -21,6 +22,21 @@ export default class SelectedItem extends Component {
       })
       .then((res) => {
         this.setState({ item: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    axios
+      .get("http://localhost:5001/decodeJWT", {
+        headers: { Authorization: `Bearer ${localStorage.getItem("key")}` },
+      })
+      .then((res) => {
+        if (res) {
+          this.setState({ user: res.data });
+        } else {
+          this.setState({ user: undefined });
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -57,13 +73,26 @@ export default class SelectedItem extends Component {
               <div class="col">
                 <div className="price">
                   <p>{this.state.item.price}€</p>
-                  <Link
-                    type="button"
-                    class="btn btn-primary btn-lg"
-                    to={`/purchase/${this.state.item.name}`}
-                  >
-                    Purchase
-                  </Link>
+
+                  { (this.state.user != undefined && ( this.state.user.role == 1 || this.state.user.role == 2)) ? 
+                            <Link
+                            type="button"
+                            class="btn btn-primary btn-lg"
+                            to={`/purchase/${this.state.item.name}`}
+                          >
+                            Purchase
+                          </Link>
+                    :
+                        <Link
+                        type="button"
+                        class="btn btn-primary btn-lg" disabled
+                        to={`/`}
+                      >
+                        Log in to Purchase
+                      </Link>
+                    
+                  }
+
                 </div>
               </div>
             </div>
