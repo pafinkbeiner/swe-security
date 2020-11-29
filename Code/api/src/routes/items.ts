@@ -27,7 +27,22 @@ const items: Item[] = [
     price: 29,
     image: ["https://1e9.community/uploads/db1440/original/2X/f/f8b416bda3b3ca512b67f45b7c9a1bb140f4eb5a.jpeg", "https://tipps.computerbild.de/imgs/19/8/5/8/8/1/65-microsoft-275553-1cdac072ef5245ae.jpg"],
     downloadLink: "https://dl2.winfuture.de/lAwHh4YJgJ2JmH94w6QpFA/1606523819/3291/ssd/Betriebssysteme/windows7/de_windows_7_professional_with_sp1_x64_dvd_u_676919.iso"
+  },
+  {
+    name: "SWI Prolog",
+    description: "SWI-Prolog offers a comprehensive free Prolog environment. Since its start in 1987, SWI-Prolog development has been driven by the needs of real world applications. SWI-Prolog is widely used in research and education as well as commercial applications. Join over a million users who have downloaded SWI-Prolog.",
+    price: 0,
+    image: ["https://www.swi-prolog.org/icons/swipl.png","https://www.swi-prolog.org/guitracer.gif","https://www.swi-prolog.org/howto/http/PceEmacsHello.png"],
+    downloadLink: "https://www.swi-prolog.org/download/stable/bin/swipl-8.2.3-1.x64.exe.envelope"
+  },
+  {
+    name: "Microsoft Visual Studio Code",
+    description: "Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. It comes with built-in support for JavaScript, TypeScript and Node.js and has a rich ecosystem of extensions for other languages (such as C++, C#, Java, Python, PHP, Go) and runtimes (such as .NET and Unity). ",
+    price: 3,
+    image: ["https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/1200px-Visual_Studio_Code_1.35_icon.svg.png","https://code.visualstudio.com/opengraphimg/opengraph-home.png","https://code.visualstudio.com/assets/updates/1_37/icons.gif"],
+    downloadLink: "https://aka.ms/win32-x64-user-stable"
   }
+  
 ]
 
 /* GET home page. */

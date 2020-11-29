@@ -54,93 +54,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = __importStar(require("express"));
-var Log_1 = require("../Helper/Log");
-var AuthHandler = __importStar(require("../Helper/AuthHandler"));
-var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+var AuthHandler_1 = require("../Helper/AuthHandler");
+var Database_1 = require("../Helper/Database");
 var router = express.Router();
 /* GET home page. */
-router.get("/", function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        res.json("SWE SHOP API");
-        return [2 /*return*/];
-    });
-}); });
-router.post("/login", function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+router.get("/", AuthHandler_1.allowAdministrator, function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     var result;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                if (req.body.username == undefined)
-                    res.status(400).json({ error: "Username was not provided" });
-                if (req.body.password == undefined)
-                    res.status(400).json({ error: "Password was not provided" });
-                if (!(req.body.username != undefined && req.body.password != undefined)) return [3 /*break*/, 2];
-                return [4 /*yield*/, AuthHandler.login(req.body.username, req.body.password)];
-            case 1:
+            case 0: return [4 /*yield*/, Database_1.DatabaseHandler.getDbInstance().getAll()];
+            case 1: return [4 /*yield*/, (_a.sent()).data];
+            case 2:
                 result = _a.sent();
-                if (result != undefined) {
-                    res.json(result);
-                    Log_1.LogHandler.getLogInstance().log("info that login of " + req.body.username + " was performed successfully!");
-                }
-                else {
-                    res.status(400).json({ error: "Login was not successfull" });
-                }
-                _a.label = 2;
-            case 2: return [2 /*return*/];
+                res.json(result);
+                return [2 /*return*/];
         }
-    });
-}); });
-router.post("/register", function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var result;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                if (req.body.username == undefined)
-                    res.status(400).json({ error: "Username was not provided" });
-                if (req.body.password == undefined)
-                    res.status(400).json({ error: "Password was not provided" });
-                if (req.body.mail == undefined)
-                    res.status(400).json({ error: "Mail was not provided" });
-                if (!(req.body.username != undefined && req.body.password != undefined && req.body.mail != undefined)) return [3 /*break*/, 2];
-                return [4 /*yield*/, AuthHandler.register(req.body.username, req.body.password, req.body.mail)];
-            case 1:
-                result = _a.sent();
-                if (result != undefined) {
-                    res.json(result);
-                }
-                else {
-                    res.status(400).json({ error: "Register was not successfull" });
-                }
-                _a.label = 2;
-            case 2: return [2 /*return*/];
-        }
-    });
-}); });
-router.get("/decodeJWT", function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var bearer, token;
-    return __generator(this, function (_a) {
-        bearer = req.headers["authorization"];
-        if (bearer != undefined) {
-            token = bearer.split(" ")[1];
-            jsonwebtoken_1.default.verify(token, "secret", function (err, authData) {
-                ;
-                if (err) {
-                    res.status(400).json({ error: "Verification was not successfull" });
-                }
-                else {
-                    res.json(authData);
-                }
-            });
-        }
-        else {
-            res.status(400).json({ error: "Bearer token was not provided" });
-        }
-        return [2 /*return*/];
     });
 }); });
 exports.default = router;
