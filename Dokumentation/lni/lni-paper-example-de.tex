@@ -590,11 +590,57 @@ Der Benutzer wäre in der Lage eigene Tokens zu erstellen mit denen er über erw
 Die Encodierung der Tokens darf aus diesem Grund nur auf der API erfolgen. 
 Um eine sichere Entschlüsselung der Tokens durchzuführen wird dieser von der Client-Applikation an die API 
 gesendet. Die API entschlüsselt die Nachricht und sendet die Payload dem Benutzer zurück. 
-Da bei der Antwort der API wichtige Anmeldedaten in Textform...
+Da bei der Antwort der API wichtige Anmeldedaten in Textform übertragen werden muss die Verbindung vor Man-In-The-Middle Attacken geschützt werden. 
+Die Verbindung zwischen Client und Server wird aus diesem Grund mittels HTTPS Verschlüsselt. 
+Für die Implementierung der Anwendung wird vor die Komponenten ein NGINX Reverse Proxy eingesetzt. 
 
-BCRYPT!!!
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{images/reversep.png}
+  \caption[Reverse Proxy]{Reverse Proxy} 
+  \label{Reverse-proxy}
+\end{figure} 
 
-HTTPS!!
+Alle Anfragen die auf eine der Komponenten treffen werden über den Reverse Proxy verteilt. Die Verschlüsselung wird 
+in dem Reverse Proxy vorgenommen. 
+
+\begin{verbatim}
+  server {
+    listen 80;
+    listen [::]:80;
+
+    server_name api.domain.com;
+
+    location / {
+                proxy_pass http://192.168.0.2:5000;
+    }
+  }
+\end{verbatim}
+
+Bei der Konfiguration des Reverse Proxy muss der Eingangsport und die Domain angegeben werden, über die eine eingehende Anfrage auf den Reverse Proxy trifft. 
+Mittels des "location" Bocks wird angegeben auf welchen Server die Anfrage umgeleitet wird. 
+Durch Zertifikations Tools wie Certbot können direkt an dieser Stelle notwendige Informationen für eine HTTPS Verbindung festgelegt werden. 
+\\\\
+Das Sicherheitsziel der Zugriffsteuerung und der Vertraulichkeit sind damit weitestgehend abgedeckt. 
+Da in der Anwendung mit einer Datenbank gearbeitet wird, ist bei der Persistierung von Benutzerdaten und besonders Passwörtern ein weiterer Aspekt zu beachten. 
+In der Datenbank dürfen Passwörter nicht in Klartext abgelegt werden. 
+Bevor die Daten initial in der Datenbank abgelegt und gespeichert werden muss mittels Hash Algorithmus noch eine Verfremdung erfolgen. 
+Im Node.js Umfeld wird dafür Typischerweise das Tool "BCrypt" benutzt. Mithilfe von BCrypt kann man Passwörter Hashen und zum Späteren Zeitpunkt 
+mit einem Klartextwort vergleichen um eine Authentifizierung durchzuführen. 
+Ein Benutzerobjekt wird in der Datenbank folgendermaßen gespeichert: 
+
+\begin{verbatim}
+{
+  "TestBenutzerName":
+      {
+          "username":"TestBenutzerName",
+          "password":"$2b$05$/6mQI7c.5BtWkpYwsTGfReLR7iWZAA9.psfgVSxTiDW40AJIhOAbS",
+          "mail":"test.benutzer@email.com",
+          "role":2
+      }
+}
+\end{verbatim}
+
 
 
 \subsection{Integrität}
