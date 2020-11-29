@@ -8,21 +8,35 @@ var dotenv_1 = __importDefault(require("dotenv"));
 var express_1 = __importDefault(require("express"));
 var path_1 = __importDefault(require("path"));
 var index_1 = __importDefault(require("./routes/index"));
+var logs_1 = __importDefault(require("./routes/logs"));
+var items_1 = __importDefault(require("./routes/items"));
+var admin_1 = __importDefault(require("./routes/admin"));
+var cors_1 = __importDefault(require("cors"));
 var createError = require("http-errors");
 // initialize configuration
 dotenv_1.default.config();
 var app = express_1.default();
 // port is now available to the Node.js runtime
 // as if it were an environment variable
-var port = normalizePort(process.env.SERVER_PORT || 5000);
+var port = normalizePort(process.env.SERVER_PORT || 5001);
 // Configure Express to parse JSON
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use(cookie_parser_1.default());
 // Configure Express to serve static files in the public folder
 app.use(express_1.default.static(path_1.default.join(__dirname, "public")));
+app.use(cors_1.default());
+// Allow cors
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 // Configure routes
 app.use("/", index_1.default);
+app.use("/logs", logs_1.default);
+app.use("/items", items_1.default);
+app.use("/admin", admin_1.default);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) { return next(createError(404)); });
 // error handler
@@ -37,7 +51,7 @@ app.use(function (err, req, res, next) {
 // start the express server
 app.listen(port, function () {
     // tslint:disable-next-line:no-console
-    console.log("Server started at http://localhost:" + port);
+    console.log("API started at http://localhost:" + port);
 });
 app.on("error", onError);
 /**

@@ -34,7 +34,15 @@ const items: Item[] = [
     price: 0,
     image: ["https://www.swi-prolog.org/icons/swipl.png","https://www.swi-prolog.org/guitracer.gif","https://www.swi-prolog.org/howto/http/PceEmacsHello.png"],
     downloadLink: "https://www.swi-prolog.org/download/stable/bin/swipl-8.2.3-1.x64.exe.envelope"
+  },
+  {
+    name: "Microsoft Visual Studio Code",
+    description: "Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. It comes with built-in support for JavaScript, TypeScript and Node.js and has a rich ecosystem of extensions for other languages (such as C++, C#, Java, Python, PHP, Go) and runtimes (such as .NET and Unity). ",
+    price: 3,
+    image: ["https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/1200px-Visual_Studio_Code_1.35_icon.svg.png","https://code.visualstudio.com/opengraphimg/opengraph-home.png","https://code.visualstudio.com/assets/updates/1_37/icons.gif"],
+    downloadLink: "https://aka.ms/win32-x64-user-stable"
   }
+  
 ]
 
 /* GET home page. */
