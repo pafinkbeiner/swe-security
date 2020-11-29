@@ -548,7 +548,9 @@ zwischengeschaltet.
 
 Die Middleware gibt die Anfrage an die nachfolgende Middleware weiter wenn der im Header enthaltene 
 Token korrekt ist. Ist der Token nicht korrekt gelangt die Anfrage erst gar nicht an die nächste Funktion die,
-die eigentlichen Inhalte zurückgeben würde.
+die eigentlichen Inhalte zurückgeben würde. 
+Die API sendet dem Client den entsprechenden Status Code und dieser kann die Antwort bspw. in Form 
+einer Fehler-Nachricht an den Benutzer weiter geben. 
 
 \subsection{Vertraulichkeit und Zugriffssteuerung}
 
@@ -563,8 +565,37 @@ Rollen die ein Benutzer annehmen kann sind:
 
 Ein Benutzer der über die Rolle "Guest" verfügt soll lediglich in die Lage sein die Items auf der Website anzuschauen. 
 Ist ein Benutzer angemeldet, verfügt dieser über die Rolle "Customer" und darf Artikel einkaufen. 
-Ein Benutzer mit der Rolle Administrator kann auf eine spezielle Administrator Seite zugreifen, die ihm eine Übersicht über 
+Ein Benutzer mit der Rolle Administrator kann auf zusätzlich zu den Anderen Seiten, auf eine spezielle Administrator Seite zugreifen, die ihm eine Übersicht über 
 alle Benutzerdaten liefert. 
+Den Zugriff kann man mittels der folgenden Grafik veranschaulichen:
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{images/access.png}
+  \caption[Zugriffsbeschränkunen]{Zugriffsbeschränkunen} 
+  \label{access-desc}
+\end{figure} 
+
+Um eine solche Zugriffsunterscheidung durchführen zu können, wird auf der API der Zugriff durch Middlewares ausgeschlossen. 
+Das Verfahren wird mithilfe von verschiedenen Middlewares implementiert. Das Verfahren wurde im vorherigen Abschnitt 
+bereits genauer erläutert. 
+Mit der Implementierung von Middlewares sind bestimmte Ressourcen auf der Oberfläche nur einem Teil der Benutzer zugänglich. 
+Allerdings werden bspw. Verweise auf gesperrte Ressourcen weiterhin angezeigt. 
+Die Client-Applikation muss über die Information verfügen, wer momentan die Anwendung bedient und über welche Berechtigungen er verfügt. 
+Eine Möglichkeit wäre den Json Web Token, der während einer Session im Local Storage gespeichert wird, zu decodieren und anschließend 
+mithilfe der Berechtigung der Payload nur ausgewählte Ressourcen anzuzeigen. 
+Zur Decodierung eines JWT ist das Wissen über das Secret notwendig mit dessen Hilfe der Token erstellt wurde. 
+Erhält der Benutzer das Secret um auf Client-Seite zu entschlüsseln bietet das ein Gefahrenpotential. 
+Der Benutzer wäre in der Lage eigene Tokens zu erstellen mit denen er über erweiterte Rechte verfügt. 
+Die Encodierung der Tokens darf aus diesem Grund nur auf der API erfolgen. 
+Um eine sichere Entschlüsselung der Tokens durchzuführen wird dieser von der Client-Applikation an die API 
+gesendet. Die API entschlüsselt die Nachricht und sendet die Payload dem Benutzer zurück. 
+Da bei der Antwort der API wichtige Anmeldedaten in Textform...
+
+BCRYPT!!!
+
+HTTPS!!
+
 
 \subsection{Integrität}
 \subsection{Nicht-Anfechtbarkeit}
