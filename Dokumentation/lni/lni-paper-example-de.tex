@@ -539,6 +539,18 @@ Auf der API durchläuft die Anfrage mehrere Middlewares.
 Bei geschützten Ressourcen wird wie in der folgenden Darstellung eine Middleware 
 zwischengeschaltet. 
 
+\begin{verbatim}
+  {
+    "TestBenutzerName":
+        {
+            "username":"TestBenutzerName",
+            "password":"$2b$05$/6mQI7c.5BtWkpYwsTGfReLR7iWZAA9.psfgVSxTiDW40AJIhOAbS",
+            "mail":"test.benutzer@email.com",
+            "role":2
+        }
+  }
+  \end{verbatim}
+
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{images/allow_customer.png}
