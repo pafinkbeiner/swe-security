@@ -651,7 +651,35 @@ Ein Benutzerobjekt wird in der Datenbank folgendermaßen gespeichert:
 
 \subsection{Integrität}
 
-Download mittels checksum überprüfen
+Bei dem Download vieler Dateien im Internet findet man Angaben zu Hash Werten. 
+Ein Hash Wert einer downloadbaren Datei erlaubt eine Prüfung der Datenintegrität. 
+Das bedeutet in der Praxis, wenn sich der selbst erzeugte Hash Wert der Datei nach dem Download 
+von der Angabe auf der Website unterscheidet, wurde die Datei höchst wahrscheinlich manipuliert. 
+Auf der Beispielimplementierung eines Shops ist ein Software Produkt zum Download angeboten. 
+Bei Kauf des Produktes wird man auf eine Seite geleitet, die einen Download Link und die 
+dazugehörige Checksum bereitstellt. 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{images/checksum_pic2.png}
+  \caption[Checksum in dem Shop]{Checksum in dem Shop} 
+  \label{checksum-pic2}
+\end{figure} 
+
+Ist der Download erfolgt kann unter Windows eine Prüfung mithilfe des Tools "certutil" erfolgen. 
+
+\begin{verbatim}
+  certutil -hashfile kali-linux-2020.4-installer-amd64.iso sha256
+\end{verbatim}
+
+Der Befehl liefert den Hash Code: 
+
+\begin{verbatim}
+  50492d761e400c2b5e22c8f253dd6f75c27e4bc84e33c2eff272476a0588fb02
+\end{verbatim}
+
+Der Hash Wert ist identisch, dem auf der Website dargestellten Wert. 
+Die Integrität der Download Dateien ist damit sichergestellt. 
 
 \subsection{Nicht-Anfechtbarkeit}
 
