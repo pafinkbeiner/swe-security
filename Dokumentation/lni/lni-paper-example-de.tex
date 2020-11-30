@@ -427,8 +427,8 @@ Mit dem Zeitalter der Digitalisierung erweiterte sich diese Begriffdefinition au
 Unter Nicht-Anfechtbarkeit versteht man heute das Erzeugen eines Nachweises für eine bestimmte Handlung oder Aktion. Der Beweis dient dazu, zu dokumentieren und festzuhalten was ein Benutzer getätigt hat. 
 Der Nicht-Anfechtbarkeitsdienst
 dient im Streitfall dazu, die erfolgten Aktionen zwischen zwei Kommunikationspartnern Dritten zu beweisen.
-Ein konrektes Beispiel wäre ein Überwachungssystem mit Kameras und audiovisueller Aufnahme, wie es Kriha in seinem Buch \citet{Kriha.2008} beschriebt. Um die Daten vor Gericht verwertbar zu machen, muss garantiert werden, dass die Aufnahme von einer der Überwachungskameras stammt.
-Weiterhin darf es nciht möglich sein Audiodateien einzuschleusen und so Daten zu fälschen. Auch in Online-Shops in Beriechen des E-Commerce ist Nicht-Anfechtbarkeit wichtig.
+Ein konrektes Beispiel wäre ein Überwachungssystem mit Kameras und audiovisueller Aufnahme, wie es Kriha in seinem Buch \citet{Kriha.2008} beschreibt. Um die Daten vor Gericht verwertbar zu machen, muss garantiert werden, dass die Aufnahme von einer der Überwachungskameras stammt.
+Weiterhin darf es nicht möglich sein Audiodateien einzuschleusen und so Daten zu fälschen. Auch in Online-Shops in Bereichen des E-Commerce ist Nicht-Anfechtbarkeit wichtig.
 Kauft ein Kunde etwas, so muss der Shop genau festhalten was der Kunde gekauft hat. Sind diese Daten nicht-anfechtbar abgespeichert, so kann dem Kunde stets die Inanspruchnahme des zahlungspflichtigen Dienstes
 bewiesen werden. Besonders wichtig ist auch wie beim Beispiel des Überwachungssystems die Glaubhaftigkeit des Nachweises, sodass die Möglichkeit der Fälschung von Nachweisen ausgeschlossen werden kann.
 Der Nicht-Anfechtbarkeitsdienst sollte aus diesem Grund einen erfolgten Informationsaustausch so dokumentieren, dass der Nachweis nicht gefälscht oder selbst erzeugt sein könnte. 
@@ -653,7 +653,16 @@ Ein Benutzerobjekt wird in der Datenbank folgendermaßen gespeichert:
 
 \subsection{Integrität}
 \subsection{Nicht-Anfechtbarkeit}
+
+Um die Nicht-Anfechtbarkeit sicherzustellen, muss ein Mechansimus bereitgestellt werden der erfolgte Käufe genau dokumentiert. Hierzu bietet sich das Logging an. Beim Logging wird automatisch ein Protokoll
+eines Softwareprozesses erstellt. Welche Informationen und Meldungen konkret ausgegeben werden, kann vom Entwickler selbst bestimmt werden. Dieses Verfahren dient in oftmals zur Aufzeichnung und Nachverfolgung
+von Fehlerzuständen. Allerdings lassen sich hiermit auch erfolgte Aktionen dokumentieren. Im Beispiel des Online Shops wird sobald sich ein Benutzer registriert, einloggt oder ausloggt eine Meldung mit Zeitstempel geloggt.
+So kann jederzeit nachgewiesen werden, wecher Benutzer zu welchem Zeitpunkt aktiv war und einen eventuellen Fehlkauf ausschließen. Besonders essentiell ist das festhalten eines Kaufes über eine Log Meldung. Mithilfe
+dieser Meldungen kann jeder Kauf einem Kunden und einem Kaufdatum zugeordnet werden. Würde ein Konsument diesen Abstreiten, so lässt sich der Kauf über dieses Dokument beweisen. 
+
 \subsection{Verfügbarkeit}
+
+
 
 \section{Fazit}
 
