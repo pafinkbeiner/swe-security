@@ -15,7 +15,7 @@ export default class Purchase extends Component {
       componentDidMount() {
 
         axios
-          .get(`http://localhost:5001/items/${this.props.match.params.name}`, {
+          .get(`${process.env.REACT_APP_API_URL}/items/${this.props.match.params.name}`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("key")}` },
           })
           .then((res) => {
