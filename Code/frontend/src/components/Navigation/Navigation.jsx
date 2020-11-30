@@ -13,7 +13,7 @@ export default class Navigation extends Component {
   componentDidMount(){
 
     axios
-      .get("http://localhost:5001/decodeJWT", {
+      .get(`${process.env.REACT_APP_API_URL}/decodeJWT`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("key")}` }, 
       })
       .then((res) => {

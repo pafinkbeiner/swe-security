@@ -13,7 +13,7 @@ export default class Items extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5001/items", {
+      .get(`${process.env.REACT_APP_API_URL}/items`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("key")}` },
       })
       .then((res) => {

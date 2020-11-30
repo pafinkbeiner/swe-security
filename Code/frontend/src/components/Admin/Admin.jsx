@@ -11,7 +11,7 @@ export default class Admin extends Component {
     }
 
     componentDidMount(){
-        axios.get("http://localhost:5001/admin", {
+        axios.get(`${process.env.REACT_APP_API_URL}/admin`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("key")}` }
         }).then(res => {
         

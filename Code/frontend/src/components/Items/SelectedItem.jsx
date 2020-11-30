@@ -17,7 +17,7 @@ export default class SelectedItem extends Component {
   componentDidMount() {
     console.log(this.props.match.params);
     axios
-      .get(`http://localhost:5001/items/${this.props.match.params.name}`, {
+      .get(`${process.env.REACT_APP_API_URL}/items/${this.props.match.params.name}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("key")}` },
       })
       .then((res) => {
@@ -28,7 +28,7 @@ export default class SelectedItem extends Component {
       });
 
     axios
-      .get("http://localhost:5001/decodeJWT", {
+      .get(`${process.env.REACT_APP_API_URL}/decodeJWT`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("key")}` },
       })
       .then((res) => {

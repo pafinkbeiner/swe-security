@@ -25,7 +25,7 @@ export default class Login extends Component {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5001/login", {
+      .post(`${process.env.REACT_APP_API_URL}/login`, {
         username: this.state.username,
         password: this.state.password,
       })
