@@ -485,16 +485,9 @@ soll in dem folgenden Teil eine konkrete Beispielimplementierung anhand einer Be
 Da Client-Server Architekturen im Internet häufig anzutreffen sind fiel die Entscheidung auf eine E-Commerce Seite die aus einem React.js Client und 
 einem Node.js Server besteht. 
 Die Speicherung der Benutzerdaten durch den Node.js Server (API) wurde mittels eines einfachen Key-Value-Stores (DB) implementiert. 
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{images/architektur.png}
-  \caption[Architektur]{Architektur} 
-  \label{Architektur}
-\end{figure} 
-
-Die in der Abbildung dargestellte Abbildung beschreibt, vereinfacht dargestellt, den Zusammenhang der einzelnen Komponenten. 
 Ein Einblick in die konkrete Implementierung der Komponenten und Schnittstellen soll in den nächsten Abschnitten erfolgen. 
+Wichtig bei der Architektur ist zu beachten, dass Client, API und Datenbank allein arbeitende Komponenten sind. 
+Jede dieser Systeme ist einzeln aufrufbar und referenziert sich gegenseitig um dem Prinzip eines verteilten Systems zu genügen. 
 
 \subsection{Authentifizierung}
 
