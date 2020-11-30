@@ -427,8 +427,8 @@ Mit dem Zeitalter der Digitalisierung erweiterte sich diese Begriffdefinition au
 Unter Nicht-Anfechtbarkeit versteht man heute das Erzeugen eines Nachweises für eine bestimmte Handlung oder Aktion. Der Beweis dient dazu, zu dokumentieren und festzuhalten was ein Benutzer getätigt hat. 
 Der Nicht-Anfechtbarkeitsdienst
 dient im Streitfall dazu, die erfolgten Aktionen zwischen zwei Kommunikationspartnern Dritten zu beweisen.
-Ein konrektes Beispiel wäre ein Überwachungssystem mit Kameras und audiovisueller Aufnahme, wie es Kriha in seinem Buch \citet{Kriha.2008} beschriebt. Um die Daten vor Gericht verwertbar zu machen, muss garantiert werden, dass die Aufnahme von einer der Überwachungskameras stammt.
-Weiterhin darf es nciht möglich sein Audiodateien einzuschleusen und so Daten zu fälschen. Auch in Online-Shops in Beriechen des E-Commerce ist Nicht-Anfechtbarkeit wichtig.
+Ein konrektes Beispiel wäre ein Überwachungssystem mit Kameras und audiovisueller Aufnahme, wie es Kriha in seinem Buch \citet{Kriha.2008} beschreibt. Um die Daten vor Gericht verwertbar zu machen, muss garantiert werden, dass die Aufnahme von einer der Überwachungskameras stammt.
+Weiterhin darf es nicht möglich sein Audiodateien einzuschleusen und so Daten zu fälschen. Auch in Online-Shops in Bereichen des E-Commerce ist Nicht-Anfechtbarkeit wichtig.
 Kauft ein Kunde etwas, so muss der Shop genau festhalten was der Kunde gekauft hat. Sind diese Daten nicht-anfechtbar abgespeichert, so kann dem Kunde stets die Inanspruchnahme des zahlungspflichtigen Dienstes
 bewiesen werden. Besonders wichtig ist auch wie beim Beispiel des Überwachungssystems die Glaubhaftigkeit des Nachweises, sodass die Möglichkeit der Fälschung von Nachweisen ausgeschlossen werden kann.
 Der Nicht-Anfechtbarkeitsdienst sollte aus diesem Grund einen erfolgten Informationsaustausch so dokumentieren, dass der Nachweis nicht gefälscht oder selbst erzeugt sein könnte. 
@@ -485,28 +485,35 @@ soll in dem folgenden Teil eine konkrete Beispielimplementierung anhand einer Be
 Da Client-Server Architekturen im Internet häufig anzutreffen sind fiel die Entscheidung auf eine E-Commerce Seite die aus einem React.js Client und 
 einem Node.js Server besteht. 
 Die Speicherung der Benutzerdaten durch den Node.js Server (API) wurde mittels eines einfachen Key-Value-Stores (DB) implementiert. 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{images/architektur.png}
+  \caption[Architektur]{Architektur} 
+  \label{Architektur}
+\end{figure} 
+
+Die in der Abbildung dargestellte Abbildung beschreibt, vereinfacht dargestellt, den Zusammenhang der einzelnen Komponenten. 
 Ein Einblick in die konkrete Implementierung der Komponenten und Schnittstellen soll in den nächsten Abschnitten erfolgen. 
-Wichtig bei der Architektur ist zu beachten, dass Client, API und Datenbank allein arbeitende Komponenten sind. 
-Jede dieser Systeme ist einzeln aufrufbar und referenziert sich gegenseitig um dem Prinzip eines verteilten Systems zu genügen. 
 
 \subsection{Authentifizierung}
 
-Authentifizierung sorgt dafür, dass ein Konsument gegenüber einem System (Produzent) verifiziert werden kann.
+Authentifizierung sorgt dafür, dass ein Benutzer gegenüber einem System verifiziert werden kann.
 Die Verifizierung erfolgt hierbei konventionell mit Wissen, also Benutzername und Passwort.
 Nach dem Übertragen der Benutzerdaten wird von der API ein Token zurückgeschickt.
-Ein, mittels Token gestützes Authentifizierungsverfahren, bietet die Möglichkeit den Konsument mittels 
+Ein, mittels Token gestützes Authentifizierungsverfahren, bietet die Möglichkeit den Benutzer mittels 
 der API mit einem temporären Token anstatt seiner Benutzerdaten zu authentifizieren. 
 Für das Beispiel wurden hierfür JSON Web Tokens \cite{JWT} eingesetzt. 
 Der Vorteil von JSON Web Tokens liegt darin, dass der Token zusätzliche eingebettete Informationen
 enthalten kann. 
-Die zusätzlichen Informationen können von der Client-Anwendung genutzt werden um dem Konsument 
+Die zusätzlichen Informationen können von dem Client genutzt werden um dem Benutzer 
 nur Zugriff auf einen Teil der Anwendung zu gewähren. 
 Hier ist eine Grafik die, die Kommunikation der Komponenten anschaulich darstellt.
 \newpage
 \begin{figure}
   \centering
   \includegraphics[width=0.7\textwidth]{images/token-auth.png}
-  \caption[Authentifizierung mittels Token]{Authentifizierung mittels Token} 
+  \caption[Token Authentification]{Token Authentification} 
   \label{token-auth}
   \cite{OktaJWTAuth}
 \end{figure} 
@@ -530,8 +537,8 @@ onSubmit = (e) => {
 }
 \end{verbatim}
 
-Werden die korrekten Anmeldedaten eingegeben bzw. registriert sich der Konsument an der 
-Anwendung, sendet der Server (Produzent) als Antwort einen Token. 
+Werden die korrekten Anmeldedaten eingegeben bzw. registriert sich der Benutzer an der 
+Anwendung, sendet der Server als Antwort einen Token. 
 Der JWT-Token besteht aus drei wichtigen Informationen: Header, Payload und Verify Signature.
 Die drei Informationen wurden auf dem Server codiert und als Zeichenkette zurückgegeben. 
 Die Zeichenkette wird in den localStorage des Client gespeichert. Wird anschließend eine 
@@ -642,47 +649,20 @@ Ein Benutzerobjekt wird in der Datenbank folgendermaßen gespeichert:
 }
 \end{verbatim}
 
+
+
 \subsection{Integrität}
-
-Bei dem Download vieler Dateien im Internet findet man Angaben zu Hash Werten. 
-Ein Hash Wert einer downloadbaren Datei erlaubt eine Prüfung der Datenintegrität. 
-Das bedeutet in der Praxis, wenn sich der selbst erzeugte Hash Wert der Datei nach dem Download 
-von der Angabe auf der Website unterscheidet, wurde die Datei höchst wahrscheinlich manipuliert. 
-Auf der Beispielimplementierung eines Shops ist ein Software Produkt zum Download angeboten. 
-Bei Kauf des Produktes wird man auf eine Seite geleitet, die einen Download Link und die 
-dazugehörige Checksum bereitstellt. 
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{images/checksum_pic2.png}
-  \caption[Checksum in dem Shop]{Checksum in dem Shop} 
-  \label{checksum-pic2}
-\end{figure} 
-
-Ist der Download erfolgt kann unter Windows eine Prüfung mithilfe des Tools "certutil" erfolgen. 
-
-\begin{verbatim}
-  certutil -hashfile kali-linux-2020.4-installer-amd64.iso sha256
-\end{verbatim}
-
-Der Befehl liefert den Hash Code: 
-
-\begin{verbatim}
-  SHA256-Hash von kali-linux-2020.4-installer-amd64.iso:
-  50492d761e400c2b5e22c8f253dd6f75c27e4bc84e33c2eff272476a0588fb02
-  CertUtil: -hashfile-Befehl wurde erfolgreich ausgeführt.
-\end{verbatim}
-
-Der Hash Wert ist identisch, dem auf der Website dargestellten Wert. 
-Die Integrität der Download Dateien ist damit sichergestellt. 
-
 \subsection{Nicht-Anfechtbarkeit}
 
-Logging mithilfe Timestamp
+Um die Nicht-Anfechtbarkeit sicherzustellen, muss ein Mechansimus bereitgestellt werden der erfolgte Käufe genau dokumentiert. Hierzu bietet sich das Logging an. Beim Logging wird automatisch ein Protokoll
+eines Softwareprozesses erstellt. Welche Informationen und Meldungen konkret ausgegeben werden, kann vom Entwickler selbst bestimmt werden. Dieses Verfahren dient in oftmals zur Aufzeichnung und Nachverfolgung
+von Fehlerzuständen. Allerdings lassen sich hiermit auch erfolgte Aktionen dokumentieren. Im Beispiel des Online Shops wird sobald sich ein Benutzer registriert, einloggt oder ausloggt eine Meldung mit Zeitstempel geloggt.
+So kann jederzeit nachgewiesen werden, wecher Benutzer zu welchem Zeitpunkt aktiv war und einen eventuellen Fehlkauf ausschließen. Besonders essentiell ist das festhalten eines Kaufes über eine Log Meldung. Mithilfe
+dieser Meldungen kann jeder Kauf einem Kunden und einem Kaufdatum zugeordnet werden. Würde ein Konsument diesen Abstreiten, so lässt sich der Kauf über dieses Dokument beweisen. 
 
 \subsection{Verfügbarkeit}
 
-Verwendung von NGINX Reverse Proxy 
+
 
 \section{Fazit}
 

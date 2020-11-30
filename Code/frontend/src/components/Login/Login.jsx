@@ -83,7 +83,7 @@ export default class Login extends Component {
                 />
               </div>
 
-              <input class="btn btn-outline-primary" value="Login" type="submit"></input>
+              <input class="btn btn-primary" value="Login" type="submit"></input>
             </form>
           </div>
           { this.state.err && <Alert message="Falsche Daten!"/>}
