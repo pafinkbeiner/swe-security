@@ -52,7 +52,7 @@ export default class Login extends Component {
     } else {
       return (
         <div className="background">
-          <Link color="white" to="/" title="Register">
+          <Link color="white" to="/register" title="Register">
             Go to Register
           </Link>
 

@@ -32,10 +32,11 @@ function App() {
     <CookiesProvider>
       <Router>
         <Switch>
+          <Route exact path="/" component={normalView}/>
           <Route exact path="/admin" component={adminView} />
           <Route exact path="/items" component={normalView} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/" component={Register} />
+          <Route exact path="/register" component={Register} />
           <Route exact path="/items/:name" component={SelectedItem} />
           <Route exact path="/purchase/:name" component={Purchase} />
         </Switch>
