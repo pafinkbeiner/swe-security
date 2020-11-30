@@ -491,15 +491,15 @@ Jede dieser Systeme ist einzeln aufrufbar und referenziert sich gegenseitig um d
 
 \subsection{Authentifizierung}
 
-Authentifizierung sorgt dafür, dass ein Benutzer gegenüber einem System verifiziert werden kann.
+Authentifizierung sorgt dafür, dass ein Konsument gegenüber einem System (Produzent) verifiziert werden kann.
 Die Verifizierung erfolgt hierbei konventionell mit Wissen, also Benutzername und Passwort.
 Nach dem Übertragen der Benutzerdaten wird von der API ein Token zurückgeschickt.
-Ein, mittels Token gestützes Authentifizierungsverfahren, bietet die Möglichkeit den Benutzer mittels 
+Ein, mittels Token gestützes Authentifizierungsverfahren, bietet die Möglichkeit den Konsument mittels 
 der API mit einem temporären Token anstatt seiner Benutzerdaten zu authentifizieren. 
 Für das Beispiel wurden hierfür JSON Web Tokens \cite{JWT} eingesetzt. 
 Der Vorteil von JSON Web Tokens liegt darin, dass der Token zusätzliche eingebettete Informationen
 enthalten kann. 
-Die zusätzlichen Informationen können von dem Client genutzt werden um dem Benutzer 
+Die zusätzlichen Informationen können von der Client-Anwendung genutzt werden um dem Konsument 
 nur Zugriff auf einen Teil der Anwendung zu gewähren. 
 Hier ist eine Grafik die, die Kommunikation der Komponenten anschaulich darstellt.
 \newpage
@@ -530,8 +530,8 @@ onSubmit = (e) => {
 }
 \end{verbatim}
 
-Werden die korrekten Anmeldedaten eingegeben bzw. registriert sich der Benutzer an der 
-Anwendung, sendet der Server als Antwort einen Token. 
+Werden die korrekten Anmeldedaten eingegeben bzw. registriert sich der Konsument an der 
+Anwendung, sendet der Server (Produzent) als Antwort einen Token. 
 Der JWT-Token besteht aus drei wichtigen Informationen: Header, Payload und Verify Signature.
 Die drei Informationen wurden auf dem Server codiert und als Zeichenkette zurückgegeben. 
 Die Zeichenkette wird in den localStorage des Client gespeichert. Wird anschließend eine 
