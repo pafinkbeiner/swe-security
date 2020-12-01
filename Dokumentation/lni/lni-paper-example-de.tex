@@ -716,6 +716,13 @@ dieser Meldungen kann jeder Kauf einem Kunden und einem Kaufdatum zugeordnet wer
 
 \subsection{Verfügbarkeit}
 
+Damit ein System immer dann verfügbar ist, wenn ein Konsument sie anfragt, sind bestimmte Maßnahmen notwendig. Die Maßnahmen zielen vorallem
+darauf ab die Seite stabil gegenüber einer hohen Belastung zu gestalten. Attacken, bei denen viele Clients gleichzeitig eingesetzt werden, um das System 
+zum Absturz zu bringen, sollen verhindert werden. Eine Möglichkeit die in der verteilten Systemanwendung umgesetzt wurde, ist das Verwenden von NGINX.
+NGINX ist eine Webserver-SOftware, die hier als Reverse-Proxy verwendet werden kann. Der Reverse-Proxy verteilt die Anfragen der Clients auf die Server, sodass
+eine Überlastung vermieden wird.
+
+
 \section{Fazit}
 
 
