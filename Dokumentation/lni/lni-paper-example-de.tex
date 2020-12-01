@@ -509,6 +509,15 @@ Die Konzepte gehören mittlerweile in vielen verteilten Systemen zum Standard.
 
 \subsubsection{Communiy Authorization Service (CAS)}
 
+Nach CERN dient das Konzept der Community Authorization Service dient der Zugriffszuweisung von Benutzern aus gemeinsamen Organisationen. Stanford ergänzt hier, dass es sich bei diesen Organisationen
+um virtuelle Gemeinschaften handelt. Virtuelle Gemeinschaften sind ein Zusammenschluss von mehreren Benutzern und Ressourcen die ein gemeinsames Ziel erfolgen. Da 
+in diesen virtuellen Gemienschaften oftmals komplexe Beziehungen obwalten, kann die Rechtezuweisung schwierig sein. Um diese Komplexität zu lösen wurde das Konzept des CAS entwickelt.
+Fragt ein Benutzer nun ein Zugriff auf eine Ressource an, so werden zunächst vom CAS-Server seine Benutzerdaten auf Gültigkeit überprüft. Anchließend werden die Richtlinien der Geminschaft und die der Webseite überprüft und 
+hieraus die Zugriffsrechte zugewiesenen. Für den Benutzer wird wie auch beim GSI-Konzept einmalig ein Proxy-Zertifikat erstellt. Mit diesem Proxy-Zertifikat kann eine direkte Zugriffsanfrage 
+an die Ressource erfolgen. Von der Ressource wird nun überprüft, ob das Proxy-Zertfikat und auch die Richtlinien der Gemeinschaft einen Zugriff erlauben. Anschließend kann bei
+erfolgreicher Autorisierung ein Zugriff auf die Ressource erfolgen. CAS ermöglicht durch die Verwendung vorhanderer Zugriffsmechanismen hoch skalierbare und dynamische virtuelle 
+Organisationen.
+
 \subsubsection{Permis}
 
 \subsubsection{EU Data Grid VOMS}
