@@ -548,8 +548,19 @@ obsolet macht.
 \subsection{Sicherheit auf der Anwendungsschicht}
 
 \subsubsection{Grid Security Infrastructure (GSI)}
+ Das Sicherheitskonzept GSI bietet eine sichere Authentifizierungsmethode für Benutzer, Prozesse und Ressourcen in einem Grid-Computing System.
+ Ein solches Konzept ist notwendig, da der Datenaustausch über das Internet erfolgt und daher ein leichtes Ziel für Angreifer ist. Das Konzept wendet hierbei die 
+ Public-Key-Verschlüsselungsmethode an. Die Daten werden zunächst mit einem öffentlichem Schlüssel verschlüsselt und dann an den Empfänger gesendet. Dieser können dann nur mithilfe
+ eines privaten Schlüssels entschlüsselt werden. Der private Schlüssel ist nur dem Besitzer bekannt. Um Zugriffsanträge zu autorisieren werden von GSI Zertifikate und 
+ eine Access Controll List verwendet. Die Zertifikate stellen sicher, dass der öffentliche SChlüssel wirklich zu einer bestimmten Person, beziehungsweise einem Server oder Service gehören. 
+ Um nun einen Antrag zu autorisieren muss die angefragte Ressource einen Eintrag für den über das Zertifikat autorisierten Schlüssel haben. Weiterhin kann die erhaltene globale User-ID auf 
+ eine lokale ID gemappt werden. Wie konkret das Mapping der globalen User-ID auf die lokale ID abläuft wird vom Betriebssystem vorgenommen und läuft deshalb unterschiedlich ab.
+ Allgemein bietet GSI die Möglichkeit für jedes Betriebssystem eingesetzt zu werden ohne bereits vorhandene Sicherheitsmechanismen zu verletzen. Besonders von Vorteil ist die 
+ SIngle-Sign-On Funktionalität des Sicherheitskonzeptes. Über die Zertfikate kann einem Benutzer für eine bestimmte Zeitspanne Zugriff auf die Ressource gewährt werden. Hierzu wird ein Proxy-Zertifikat erstellt, das
+ sich ähnlich wie ein Session Key verhält. Zur Anlegung des Proxys ist ein Zugriff auf die Benutzeranmeldeinformationen einmalig notwendig. Die GSI ist unabhängig von bestimmten Verschlüsselungsalgorithmen
+ und einfach an verschiedene Sicherheitsrichtlinien anpassbar. Zusätzlich bietet GSI Sicherheit im Falle einer gestohlenen Vollmacht für ein Zertifikat oder auch eines privaten Schlüssels.
 
-\subsubsection{Globus Communiy Authorization Service (CAS)}
+\subsubsection{Communiy Authorization Service (CAS)}
 
 \subsubsection{Permis}
 
