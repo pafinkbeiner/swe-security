@@ -484,16 +484,66 @@ Eingesetzt wird dies zum Beispiel bei allen großen Streaming Anbietern wie etwa
 In diesem Abschnitt soll eine allgemeine Betrachtung von Sicherheitskonzepten 
 für verteilte Systeme erfolgen. 
 Die Konzepte gehören mittlerweile in vielen verteilten Systemen zum Standard.
-
-
+Eine Unterteilung der Sicherheitskonzepte wird anhand des ISO-OSI Referenzmodells gemacht. 
+Teile der Sicherheitskonzepte setzten bereits in der Netzwerkschicht, andere erst in der 
+Applikationsschicht der Systeme an. 
 
 \subsection{Sicherheit auf der Netzwerkschicht}
 
-\subsubsection{IPSec, Ipv6 und VPNs}
+In diesem Abschnitt wird ein besonderes Augenmerk auf Sicherheitssysteme gelegt, 
+die verteilte Systeme auf der Netzwerkschicht absichern. 
+
+\subsubsection{IPSec und VPNs}
+
+In bekannten Attacken auf verteilte Systeme ist eine der schwerwiegendsten Angriffsvektoren
+der Kommunikationsweg. Die Fähigkeit eines Angreifers Pakete innerhalb eines Systems abfangen und 
+modifizieren zu können soll daher unterbunden werden. 
+Besonders die Sicherheitsdienste der Vertraulichkeit und der Integrität von Daten ist bei 
+einer geringfügigen Beachtung der Härtung von Kommunikationswegen gefärdet. 
+Sollte sich der Aufbau eines verteilten Systemes über Netzwerk- oder Internetbereiche 
+erstrecken ist die sicherste Möglichkeit der Absicherung mithile von IPSec. 
+Den Hauptteil von IPSec stellen sogenannte Vertrauensstellungen da. 
+Diese werden durch den Austausch vordefinierter Schlüssel generiert. 
+Ebenfalls ist eine Initiierung mithilfe von Zertifikaten möglich \cite{IPSec}.
+Die Vertrauensstellungen müssen nicht zwangsläufig zwischen den Clients sondern 
+können durch die Kopplung der beiden Netze durch die beiden Router erfolgen.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{images/ipsec.png}
+  \caption[IPSec]{IPSec} 
+  \label{IPsec}
+\end{figure}  
+
+Die Verwendung von IPSec erlaubt den Aufbau von sogenannten VPNs (Virtual Privat Networks).
+Innerhalb eines VPN Netzwerkes ist die Kommunikation geshcützt vor Offenlegung, 
+basiert aber trotzdem auf der vorhandenen physischen Struktur des Internets.
+Besonders geeignet ist die Verwendung von IPSec und VPN im Bezug auf verteilte Systeme, 
+wenn die Integration der Sicherheit auf der Anwendungsschicht für einen speziellen 
+Anwendungsfall schwierig ist. Dies kann der Fall sein, wenn man in den Quellcode 
+des Systems keinen Einblick hat. 
+Da der Sicherheitsmechanismus erst auf der Netzwerkschicht eingreift kann dieser 
+nur begrenzt die Möglichkeit liefern die Sicherheit auf der Anwendungsschicht zu unterstüzten.
 
 \subsubsection{Firewalls}
 
-\subsubsection{Integration mit Kommunikationsschichten}
+Ein zuerst banal scheinendes Sicherheitskonzept stellt die Verwendung von 
+Firewalls da. Firewalls bilden eine Barriere an der Grenze des Netzwerks 
+einer Organisation. Der Einsatz garantiert, dass nur festgelegte Netzwerkkommunikation
+über Netzwerkgrenzen hinweg stattfinden kann. 
+Wenn die Firewalls einer Organisation richtig konfiguriert sind, werden viele 
+Angriffe auf Hosts innerhalb eines Netzwerks von vorne herein verhindert. 
+Bei einigen verteilten Systemen besonders unter der Verwendung von IPSec und 
+VPN spielen Firewalls eine geringere Rolle, da der Datenfluss zwar durch die Firewall 
+läuft aber diese keinen Einblick in die verschlüsselten Pakete erhält. 
+Dennoch kann mithilfe von Firewalls ein Rechnernetz abgesichert werden indem 
+an die Grenze eines ungeschützen Netzwerkes plaziert wird. 
+Die Kommunikation innerhalb des privaten Netzes kann so unverschlüsselt erfolgen und 
+die Nachrichten würden, sobald sie das lokale Netz verlassen verschlüsselt werden. 
+Die Verwendung von Firewalls bringt daher den großen Vorteil, das die Kommunikation 
+von Daten innerhalb eines Netzwerkes ohne Verschlüsselung erfolgen kann und somit 
+die Notwendigkeit von individuellen Sicherheitsparametern der einzelnen Hosts 
+obsolet macht. 
 
 \subsection{Sicherheit auf der Anwendungsschicht}
 
