@@ -638,8 +638,8 @@ einer Fehler-Nachricht an den Benutzer weitergeben.
 Der Sicherheitdienst der Vertraulichkeit macht bestimmte Teile der Anwendung nur für einen Teil der Benutzer sichtbar. 
 Das Beispiel verfügt über eine rollenbasierte Zugriffssteuerung. 
 Einem Benutzer wird dann eine entsprechende Rolle zugewiesen. verfügbare Rollen sind Administrator, Customer oder Guest.
-Ein Benutzer der über die Rolle "Guest" verfügt soll nur in der Lage sein, die Items auf der Website anzuschauen. 
-Ist ein Benutzer angemeldet, verfügt dieser über die Rolle "Customer" und darf Artikel einkaufen. 
+Ein Benutzer der über die Rolle \glqq Guest \glqq{} verfügt soll nur in der Lage sein, die Items auf der Website anzuschauen. 
+Ist ein Benutzer angemeldet, verfügt dieser über die Rolle \glqq Customer \glqq{} und darf Artikel einkaufen. 
 Ein Benutzer mit der Rolle Administrator kann zusätzlich auf eine spezielle Administrator Seite zugreifen, die ihm eine Übersicht über 
 alle Benutzerdaten liefert. 
 Den Zugriff kann man mittels der Grafik in \autoref*{access-desc} veranschaulicht werden.
@@ -692,14 +692,14 @@ in dem Reverse Proxy vorgenommen.
 \end{verbatim}
 
 Bei der Konfiguration des Reverse Proxy muss der Eingangsport und die Domain angegeben werden, über die eine eingehende Anfrage auf den Reverse Proxy trifft. 
-Mittels des "location" Bocks wird angegeben auf welchen Server die Anfrage umgeleitet wird. 
+Mittels des \glqq location\glqq{}  Bocks wird angegeben auf welchen Server die Anfrage umgeleitet wird. 
 Durch Zertifikations Tools wie Certbot können direkt an dieser Stelle notwendige Informationen für eine HTTPS Verbindung festgelegt werden. 
 \\\\
 Das Sicherheitsziel der Zugriffsteuerung und der Vertraulichkeit sind damit weitestgehend abgedeckt. 
 Da in der Anwendung mit einer Datenbank gearbeitet wird, ist bei der Persistierung von Benutzerdaten und besonders Passwörtern ein weiterer Aspekt zu beachten. 
 In der Datenbank dürfen Passwörter nicht in Klartext abgelegt werden. 
 Bevor die Daten initial in der Datenbank abgelegt und gespeichert werden muss mittels Hash Algorithmus noch eine Verfremdung erfolgen. 
-Im Node.js Umfeld wird dafür Typischerweise das Tool "BCrypt" benutzt. Mithilfe von BCrypt kann man Passwörter Hashen und zum späteren Zeitpunkt 
+Im Node.js Umfeld wird dafür Typischerweise das Tool \glqq BCrypt\glqq{}  benutzt. Mithilfe von BCrypt kann man Passwörter Hashen und zum späteren Zeitpunkt 
 mit einem Klartextwort vergleichen, um eine Authentifizierung durchzuführen. 
 Ein Benutzerobjekt wird in der Datenbank folgendermaßen gespeichert: 
 
@@ -724,7 +724,7 @@ von der Angabe auf der Website unterscheidet, wurde die Datei höchst wahrschein
 Auf der Beispielimplementierung eines Shops ist ein Software Produkt zum Download angeboten. 
 Bei Kauf des Produktes wird man auf eine Seite geleitet, die einen Download Link und die 
 dazugehörige Checksum bereitstellt. 
-Ist der Download erfolgt kann unter Windows eine Prüfung mithilfe des Tools "certutil" erfolgen. 
+Ist der Download erfolgt kann unter Windows eine Prüfung mithilfe des Tools \glqq certutil\glqq{}  erfolgen. 
 
 \begin{verbatim}
   certutil -hashfile kali-linux-2020.4-installer-amd64.iso sha256
