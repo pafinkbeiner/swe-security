@@ -140,7 +140,7 @@ Weiterhin kann es zu Problemen in der Sicherheit kommen, die im nachfolgenden Ab
 In diesem Abschnitt wird genauer auf den Sachverhalt eingegangen welche Gefahren IT-Systemen drohen.
 IT-Sicherheit ist ein Teil der Informationssicherheit und befasst sich mit der Planung, Maßnahmen und Kontrollen, die dem Schutz der IT dienen.
 Sie reicht dabei vom Schutz einzelner Dateien bis hin zur Absicherung von Rechenzentren und Cloud-Diensten \cite{ITSEC}. 
-Der Bereich von IT-Sicherheit ist grob in folgenden vier Teilbereiche einzugliedern: 
+Dieser Abschnitt ist in die vier Teilbereiche der IT-Sicherheit gegliedert und erklärt diese.
 
 \paragraph{Schutz von Informationen und IT-Systemen}
 Das auch als \glqq Endpoint Security \grqq{} bezeichnete Grundkonzept der IT-Sicherheit befasst sich mit dem durchführen 
@@ -536,11 +536,11 @@ obsolet macht.
 \subsection{Sicherheit auf der Anwendungsschicht}
 
 \subsubsection{Grid Security Infrastructure (GSI)}
- Das Sicherheitskonzept GSI bietet eine sichere Authentifizierungsmethode für Benutzer, Prozesse und Ressourcen in einem Grid-Computing System.
+ Das Sicherheitskonzept GSI bietet eine sichere Authentifizierungsmethode für Benutzer, Prozesse und Ressourcen in einem Grid-Computing System. Verwendet wird hier die asymmetrische Kryptographie.
  Ein solches Konzept ist notwendig, da der Datenaustausch über das Internet erfolgt und daher ein leichtes Ziel für Angreifer ist. Das Konzept wendet hierbei die 
  Public-Key-Verschlüsselungsmethode an. Die Daten werden zunächst mit einem öffentlichem Schlüssel verschlüsselt und dann an den Empfänger gesendet. Dieser können dann nur mithilfe
  eines privaten Schlüssels entschlüsselt werden. Der private Schlüssel ist nur dem Besitzer bekannt. Um Zugriffsanträge zu autorisieren werden von GSI Zertifikate und 
- eine Access Controll List verwendet. Die Zertifikate stellen sicher, dass der öffentliche SChlüssel wirklich zu einer bestimmten Person, beziehungsweise einem Server oder Service gehören. 
+ eine Access Controll List verwendet. Die Zertifikate stellen sicher, dass der öffentliche Schlüssel wirklich zu einer bestimmten Person, beziehungsweise einem Server oder Service gehören. 
  Um nun einen Antrag zu autorisieren muss die angefragte Ressource einen Eintrag für den über das Zertifikat autorisierten Schlüssel haben. Weiterhin kann die erhaltene globale User-ID auf 
  eine lokale ID gemappt werden. Wie konkret das Mapping der globalen User-ID auf die lokale ID abläuft wird vom Betriebssystem vorgenommen und läuft deshalb unterschiedlich ab.
  Allgemein bietet GSI die Möglichkeit für jedes Betriebssystem eingesetzt zu werden ohne bereits vorhandene Sicherheitsmechanismen zu verletzen. Besonders von Vorteil ist die 
@@ -552,24 +552,23 @@ obsolet macht.
 
 Nach CERN dient das Konzept der Community Authorization Service dient der Zugriffszuweisung von Benutzern aus gemeinsamen Organisationen. Stanford ergänzt hier, dass es sich bei diesen Organisationen
 um virtuelle Gemeinschaften handelt. Virtuelle Gemeinschaften sind ein Zusammenschluss von mehreren Benutzern und Ressourcen die ein gemeinsames Ziel erfolgen. Da 
-in diesen virtuellen Gemienschaften oftmals komplexe Beziehungen obwalten, kann die Rechtezuweisung schwierig sein. Um diese Komplexität zu lösen wurde das Konzept des CAS entwickelt.
-Fragt ein Benutzer nun ein Zugriff auf eine Ressource an, so werden zunächst vom CAS-Server seine Benutzerdaten auf Gültigkeit überprüft. Anchließend werden die Richtlinien der Geminschaft und die der Webseite überprüft und 
-hieraus die Zugriffsrechte zugewiesenen. Für den Benutzer wird wie auch beim GSI-Konzept einmalig ein Proxy-Zertifikat erstellt. Mit diesem Proxy-Zertifikat kann eine direkte Zugriffsanfrage 
+in diesen virtuellen Gemeinschaften oftmals komplexe Beziehungen obwalten, kann die Rechtezuweisung schwierig sein. Um diese Komplexität zu lösen wurde das Konzept des CAS entwickelt.
+Fragt ein Benutzer nun ein Zugriff auf eine Ressource an, so werden zunächst vom CAS-Server seine Benutzerdaten auf Gültigkeit überprüft. Anschließend werden die Richtlinien der Ressource für die Gemeinschaft überprüft und 
+umgesetzt. Für den Benutzer wird wie auch beim GSI-Konzept einmalig ein Proxy-Zertifikat erstellt. Mit den Credentials des Proxy-Zertifikats kann eine direkte Zugriffsanfrage 
 an die Ressource erfolgen. Von der Ressource wird nun überprüft, ob das Proxy-Zertfikat und auch die Richtlinien der Gemeinschaft einen Zugriff erlauben. Anschließend kann bei
-erfolgreicher Autorisierung ein Zugriff auf die Ressource erfolgen. CAS ermöglicht durch die Verwendung vorhanderer Zugriffsmechanismen hoch skalierbare und dynamische virtuelle 
+erfolgreicher Autorisierung ein Zugriff auf die Ressource erfolgen. Das tatsächliche Recht eines Benutzers hängt davon ab, welche Rechte eine Gemeinschaft von der Ressource erhält. Die Gemeisnchaft 
+wiederrum vergibt weitere Privilegien an den Benutzer.  CAS ermöglicht durch die Verwendung vorhanderer Zugriffsmechanismen hoch skalierbare und dynamische virtuelle 
 Organisationen.
 
 \subsubsection{Permis}
-
-\subsubsection{EU Data Grid VOMS}
-
-\subsubsection{Akenti}
-
-% \subsection{Sicherheitsframeworks}
-
-% \subsubsection{MonaLisa}
-
-% \subsubsection{ADTM}
+In den beiden Quellen der Stanford University und der CERN wird dieses Konzept leicht abgewandelt beschrieben.
+Das Konzept Permis bietet eine konkrete Infrastruktur mit rollembasierten Zugriffsystem. 
+ Mit jeder verfügbaren Rolle sind verschiedene Zugriffsrechte definiert. So muss nicht jeder
+Komponente einzeln Privilegien zugeordnet werden, sondern nur die entsprechende Rolle. Das Binden der Komponente an Rollen und die damit verbundene notwendige Kommunikation der Rollen 
+erfolgt gesichert über ein Attribut-Zertifikat. Alle diese Zertifikate werden auf einem Server gehostet, der für jeden Benutzer Zertifikate anlegt. Auf dem Server sind weiterhin
+die Autorisierungsrichtlinien definiert. Fragt ein Benutzer nun eine Ressource an, so wird
+zunächst seine Identität überprüft. Dies erfolgt über den mit dem Attribut-Zertifikat mitgegebem eindeutigem Name (Distinguished Name). Anschließend kann die Ressource mithilfe des Attribut-Zertifikats und den Richtlinien vom Server den Zugriff erlauben oder ablehnen. CERN schriebt hier, dass
+die Entscheidung über Zugriff auf die Ressource direkt vom Access Decision Framework der Ressource erfolgt. Nach Stanford erfolgt dies von PERMIS selber, welcher dann die Entscheidung an die Ressource zurückgibt.
 
 \section{Vergleich}
 
