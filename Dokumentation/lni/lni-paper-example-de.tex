@@ -198,7 +198,7 @@ Informationstechnische Systeme werden heute kaum vollständig isoliert eingesetz
 dafür sind verteilte Systeme. Die Kommunikation zwischen den Systemen findet dabei über lokale und globale 
 Netze statt. Dabei wird die globale Vernetzung oft von Tätern für schädliche Aktivitäten missbraucht.
 Die Motivation hinter einer solchen Aktivität ist häufig Geld, Sabotage, Einflussnahme oder Informationsbeschaffung. 
-Eine genaue Einteilung der Bedrohungen und der dazugehörigen Schutzziele für Systeme in der Informationstechnik sieht so aus:
+Eine genaue Einteilung der Bedrohungen und der dazugehörigen Schutzziele für Systeme in der Informationstechnik sieht so aus \cite{Bedner.2010}:
 
 \begin{tabular}[h]{l|c}
     Bedrohungen & Schutzziele \\
@@ -268,13 +268,14 @@ die Verfügbarkeit des Zielsystemes zu kompromittieren was zu einer Unterbrechun
 \\\\
 Die Gefahren von Cyberattacken sind sehr umfangreich. Die hohe Komplexität der Schadsoftware ist der 
 Grund, warum man nie von einem vollständigig sicheren System sprechen kann. 
-Von dem Bundesamt für Sicherheit in der Informationstechnik (BSI) sind einige Interessante Fakten darüber veröffentlicht worden: 
+Von dem Bundesamt für Sicherheit in der Informationstechnik (BSI) sind einige Interessante Fakten darüber veröffentlicht worden \cite{o.A.2012}: 
 \begin{itemize}
     \item Etwa alle zwei Sekunden erscheint ein neues Schadprogramm bzw. eine neue Variante
     \item Pro Minute werden ca. 2 digitale Identitäten in Deutschland gestohlen
     \item Pro Tag werden etwa 4-5 geziehlte Trojaner im Regierungsnetz entdeckt
     \item Pro Monat werden etwa 40.000 Zugriffsversuche aus dem Regierungsnetz auf schädliche Websiten blockiert
 \end{itemize}
+
 
 \subsection{Anforderungen an verteilte Systeme}
 Um die Sicherheit im verteilten System gegen die möglichen Angriffe zu schützen müssen einige Anforderungen erfüllt werden. In diesem Abschnitt sollen
@@ -324,7 +325,7 @@ wobei der Benutzer gegenüber dem System eine Identität vorgibt, die von diesem
 Auf die Authentisierung folgt anschließend die Authentifizierung. Bei dem Authentifizierungsvorgang werden die vom Nutzer 
 eingegebenen Daten, also seine angegebene Identität, überprüft.  
 Durch den Prozess der Authentifizierung wird eine Identität an ein Subjekt/ Entität gebunden. 
-Das Binden der Identität berechtigt den Benutzer bestimmte Dienste in Anspruch nehmen zu können. 
+Das Binden der Identität berechtigt den Benutzer bestimmte Dienste in Anspruch nehmen zu können. \cite{Pfitzmann.}
 \newline
 Es gibt verschiedene Arten wie eine Authentifizierung durchgeführt werden kann:
 \begin{figure}
@@ -354,12 +355,12 @@ Besitzt, Identität oder den Standort zu Authentifizieren.
 Besonders interessant für zusätzliche Sicherheit auf Client-Seite können die 
 Authentifizierungsmöglichkeiten kombiniert werden. Die Kombination von bspw. einer Authentifizierung durch Wissen und von Besitz 
 wird als 2-Faktor-Authentifizierung bezeichnet. Gelangt ein Angreifer an ein Passwort hat er so ohne die entpsrechende zweite 
-Authentifizierungsmethode keine Möglichkeit die Identität des Benutzers anzunehmen. 
+Authentifizierungsmethode keine Möglichkeit die Identität des Benutzers anzunehmen. \cite{Kriha.2008}
 
 \subsection{Integrität}
 
 Das Schutzziel Integrität umfasst sowohl die Korrektheit der Daten (Datenintegrität) 
-als auch die korrekte Funktionsweise des Systems (Systemintegrität). 
+als auch die korrekte Funktionsweise des Systems (Systemintegrität) \cite{Kriha.2008}. 
 Es gibt schwache und starke Integrität. 
 Eine starke Integrität liegt vor, wenn keine Möglichkeit der unbefugten Datenmanipulation besteht. 
 Von einer schwachen Integrität spricht man hingegen dann, falls eine Datenmanipulation zwar generell, 
@@ -406,7 +407,7 @@ Nachdem ein sicherer Tunnel durch die Dienste Authentifizierung, Vertraulichkeit
 Integritätsschutz aufgebaut wurde, befasst sich die Autorisierung mit der Frage für welche Systembereiche ein Client Zugriff erhält. 
 In Computernetzwerken sowie im Bereich von verteilten Systemen bezeichnet die Autorisierung das Zuweisen 
 und die Überprüfung von Zugriffsrechten. Damit bilden Autorisierung und Zugriffssteuerung eine Einheit und 
-verantworten die Vergabe von Freigaben an den Benutzer. 
+verantworten die Vergabe von Freigaben an den Benutzer \cite{Bedner.2010}. 
 Es gibt verschiedene Arten wie festgelegt werden kann auf welche Ressourcen welcher Benutzer einen Zugriff hat. 
 Meist werden die Benutzer zum Stand der Registrierung bereits in eine Benutzergruppe eingeteilt. 
 Mithilfe von gruppenbasierter Zugriffssteuerung können mehrere Rechte mit einem Mal an einen Benutzer übergeben werden. 
@@ -418,7 +419,7 @@ kann ohne Einschränkung Software installiert werden. Ist ein Benutzer in keiner
 das Administrator Kennwort eingegeben werden. 
 In verteilten Systemen ist ein ähnliches Prinzip zu beobachten. So gibt es für eine Webanwendung oftmals 
 eine Administratorgruppe und beispielsweise eine Gruppe mit der Bezeichnung \glqq Kunde\grqq{}, die nur den Zugriff auf 
-einen Teilbereich der Webanwendung zulässt. 
+einen Teilbereich der Webanwendung zulässt. \cite{Kriha.2008} 
 
 \subsection{Verfügbarkeit}
 
