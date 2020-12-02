@@ -171,9 +171,7 @@ Maßnahmen so durchzuführen das die Integrität und Verfügbarkeit von Daten in
 Innerhalb eines Netzwerkes hat sich eine Vielzahl an Techniken bereits etabliert. 
 Zentraler Bestandteil für eine Sichere Kommunikation eines Netzwerks stellt dabei die Firewall dar. Firewalls kontrollieren den Datenfluss zwischen den 
 Netzwerken, insbesondere zwischen dem Firmennetzwerk und dem Internet. Eine genauere Erläuterung der Schutzmaßnahmen und möglichen Angriffsvektoren im Zusammenhang mit 
-der Vernetzung von mehreren Systemen wird zum späteren Zeitpunkt noch einmal genauer erläutert. 
-
-Quelle: https://www.security-insider.de/was-bedeutet-netzwerksicherheit-a-578391/
+der Vernetzung von mehreren Systemen wird zum späteren Zeitpunkt noch einmal genauer erläutert \cite{NWS}. 
 
 \paragraph{Schutz des Benutzers}\label{Schutz_des_Benutzers}
 Der Anwender selbst ist auch Bestandteil der IT-Sicherheit. Es muss von vorne herein festgelegt werden welcher Benutzer auf welches System zugreifen darf. 
@@ -748,8 +746,6 @@ Ein Benutzerobjekt wird in der Datenbank folgendermaßen gespeichert:
 }
 \end{verbatim}
 
-
-
 \subsection{Integrität}
 
 Bei dem Download vieler Dateien im Internet findet man Angaben zu Hash Werten. 
@@ -793,7 +789,16 @@ eine Überlastung vermieden wird.
 
 \section{Fazit}
 
-
+Im allgemeinen ist eine Bewertung der verschiedenen Sicherheitskonzepte anhand der IT-Sicherheitsdienste 
+möglich. Die Abgrenzung der Sicherheitskonzepte anhand der Ebenen des OSI-Modelles
+liefert einen Eindruk über den jeweiligen Einsatzbereich der Konzepte. 
+Die Verwendung von Konzepten wie IPSec und VPN liefert viele Vorteile besonders beim 
+Schutz der Vertraulichkeit und Integrität der Daten. Die Verwendung von weiteren Sicherheitsprotokollen 
+wie HTTPS wurde in dem Anwendungsbeispiel aufgegriffen und liefert ebenfalls eine gute Alternative zu einer 
+weniger Restriktiven Lösung. 
+Der Einsatz von Komponenten zur Sicherung der internen Netzwerkstruktur durch bspw. Firewalls ist heutzutage
+in vielen verteilten Netzen Standard. Der Einsatz garantiert, dass nur der vorgesehene Datenfluss 
+in das Netzwerk gelangt. 
 
 %% \bibliography{lni-paper-example-de.tex} ist hier nicht erlaubt: biblatex erwartet dies bei der Preambel
 %% Starten Sie "biber paper", um eine Biliographie zu erzeugen.
