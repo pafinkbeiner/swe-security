@@ -13,6 +13,7 @@
 %% Zu Demonstrationszwecken
 \usepackage[math]{blindtext}
 \usepackage{mwe}
+\usepackage{pdfpages}
 
 %% BibLaTeX-Sonderkonfiguration,
 %% falls man schnell eine existierende Bibliographie wiederverwenden will, aber nicht die .bib-Datei händisch anpassen möchte.
@@ -133,11 +134,11 @@ Sie reicht dabei vom Schutz einzelner Dateien bis hin zur Absicherung von Rechen
 Dieser Abschnitt ist in die vier Teilbereiche der IT-Sicherheit gegliedert und erklärt diese.
 
 \paragraph{Schutz von Informationen und IT-Systemen}
-Das auch als \glqq Endpoint Security \grqq{} bezeichnete Grundkonzept der IT-Sicherheit befasst sich mit dem Durchführen 
+Das auch als \glqq Endpoint Security\grqq{} bezeichnete Grundkonzept der IT-Sicherheit befasst sich mit dem Durchführen 
 organisatorischer Maßnahmen, die den unbefugten Zugriff auf Geräte verhindern soll. 
 Die genaue Art der Geräte spielt dabei keine Rolle es kann sich um Notebooks, Tablets, PCs oder andere Geräte handeln. 
 Geschützt werden die Endgeräte vor verschiedenen Arten von Schadsoftware oder vor unbefugten Systemzugriffen. 
-Besonders durch Trends in der Unternehmenskultur, wie beispielsweise \glqq Bring your own device \grqq{}, gewinnt der Schutz der firmeneigenen 
+Besonders durch Trends in der Unternehmenskultur, wie beispielsweise \glqq Bring your own device\grqq{}, gewinnt der Schutz der firmeneigenen 
 IT-Systeme immer mehr Bedeutung. 
 Im Bereich der Endgerätsicherheit haben sich einige Maßnahmen wie Malware-Schutz, Anwendungsisolation, URL-Filter und Client-Firewalls heraus gezeichnet.
 \citet{Luber.2020}
@@ -158,7 +159,7 @@ der Vernetzung von mehreren Systemen wird zum späteren Zeitpunkt noch einmal ge
 
 \paragraph{Schutz des Benutzers}\label{Schutz_des_Benutzers}
 Der Anwender selbst ist auch Bestandteil der IT-Sicherheit. Es muss von Beginn an festgelegt werden welcher Benutzer auf welches System zugreifen darf. 
-Das Festlegen solcher Richtlinien wird als \glqq Identity- und Access Management \grqq{} bezeichnet und regelt die zentrale Verwaltung von Identitäten und Zugriffsrechten auf unterschiedlichen
+Das Festlegen solcher Richtlinien wird als \glqq Identity- und Access Management\grqq{} bezeichnet und regelt die zentrale Verwaltung von Identitäten und Zugriffsrechten auf unterschiedlichen
 Systemen und Applikationen. Für die Erteilung von Zugriffsrechten muss sich ein Benutzer authentifizieren und autorisieren. 
 Die Authentifizierung bezeichnet einen Prozess, bei dem der Benutzer seine Identität gegenüber des Systems mithilfe von Benutzerdaten bestätigen muss. Das System kann nun annehmen, dass der Benutzer derjenige ist für den er sich ausgibt.
 Die Autorisierung 
@@ -217,7 +218,7 @@ die jeweils ein Abweichen vom normalen Datenfluss anzeigen.
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{images/angriffe_pic1.png}
-    \caption[Beschreibung für Inhaltsverzeichnis]{Bildbeschreibung} 
+    \caption[Beschreibung für Inhaltsverzeichnis]{Übersicht über Angriffe} 
     \label{Referenz}
 \end{figure} 
 
@@ -227,7 +228,7 @@ IT-Systems zerstört oder unbrauchbar gemacht wird. Die Angriffe zielen darauf
 ab die Verfügbarkeit des betroffenen IT-Systems zu schwächen. 
 
 \paragraph{Abfangen}
-Die oft als \glqq Man-in-the-middle \grqq{} Angriffe bezeichneten Attacken sind dieser 
+Die oft als \glqq Man-in-the-middle\grqq{} Angriffe bezeichneten Attacken sind dieser 
 Kategorie zuzuweisen. Ein nicht berechtigter Benutzer versucht die Vertraulichkeit des 
 IT-Systems zu kompromittieren.  
 
@@ -244,7 +245,7 @@ Ein Beispiel hierfür wäre sogar bereits die Urkundenfälschung auf einem Compu
 Bei der folgenden Betrachtung von Angriffen auf verteilte Systeme werden die Angriffe jeweils einer 
 der aufgeführten Kategorien zugeordnet. 
 
-Der bisher wohl bekannteste Cyber-Angriff wurde 2017 in Form der Ransomeware \glqq WannaCry \grqq{} bekannt.
+Der bisher wohl bekannteste Cyber-Angriff wurde 2017 in Form der Ransomeware \glqq WannaCry\grqq{} bekannt.
 Mithilfe einer Schwachstelle konnte eine Hackergruppe einen sogenannten Kryptotrojaner über das Netzwerk
 auf sehr viele IT-Systeme verteilen. Besonders interessant in dem Zusammenhang mit verteilten Systemen ist 
 das Vorgehen des Trojaners in Unternehmen und Institutionen wie Krankenhäusern. 
@@ -259,7 +260,7 @@ Schaden geführt hat.
 Ein solcher Angriff zielt auf die Kompromittierung der Verfügbarkeit und Integrität der Daten des 
 Zielsystems ab und sorgt somit für eine Unterbrechung- und Modifikation des normalen Datenflusses. 
 \\\\
-Ein ebenfalls sehr bekanntes Beispiel für einen Cyber-Angriff ist die Malware \glqq Stuxnet. \grqq{}
+Ein ebenfalls sehr bekanntes Beispiel für einen Cyber-Angriff ist die Malware \glqq Stuxnet\grqq{}.
 Das Ziel des Angriffs war es die Leittechnik zur Urananreicherung im Iran außer Kraft zu setzen. 
 Dem Wurm war es möglich sich über USB-Sticks unbemerkt sogar auf Computersysteme ohne Internetzugang 
 auszubreiten. Geriet die Schadsoftware auf einen Rechner der mit einer bestimmten Maschinensteuerung 
@@ -397,9 +398,6 @@ bewiesen werden. Besonders wichtig ist auch wie beim Beispiel des Überwachungss
 Der Nicht-Anfechtbarkeitsdienst sollte aus diesem Grund einen erfolgten Informationsaustausch so dokumentieren, dass der Nachweis nicht gefälscht oder selbst erzeugt sein könnte. 
 Den Begriff Nicht-Anfechtbarkeit verwendet man auch häufig zusammen mit dem Begriff \glqq Digitale Signatur\grqq{}. Auch die digitale Signatur ist eine Form der Garantie von Nicht-Anfechtbarkeit. 
 Es wird die Identität des Benutzers überprüft und ein gültiges Dokument durch eine elektronsiche Unterschrift rechtskräftig unterzeichnet.\citet{Bedner.2010} \citet{Kriha.2008}
-\\\\
-Es gibt keine konkreten Algorithmen oder Vorgaben, wie der Nicht-Anfechtbarkeitsdienst in verteilten Systemen implementiert werden kann.
-Die Implementierung ist stark von der Klasse des verteilten Systems abhängig.
 
 \subsection{Zugriffssteuerung/Autorisierung}
 
@@ -555,6 +553,8 @@ Da einige Sicherheitsmechanismen auf unterschiedlichen Ebenen der Netzwerkstrukt
 wird eine weitere Unterscheidung vorgenommen.
 Der Vergleich wird durch die folgende Tabelle anschaulich dargestellt: 
 
+\includepdf[pages=1, scale=1, frame=false]{images/Vergleich}
+
 \section{Sicherheit verteilter Systeme in der Praxis}
 
 Der Vergleich der verschiedenen Sicherheitskonzepte für verteilte Systeme hat einen Eindruck darüber gegeben, wie 
@@ -585,7 +585,7 @@ Hier ist eine Grafik die, die Kommunikation der Komponenten anschaulich darstell
 \newpage
 \begin{figure}
   \centering
-  \includegraphics[width=0.7\textwidth]{images/token-auth.png}
+  \includegraphics[width=1\textwidth]{images/token-auth.png}
   \caption[Token Authentification]{Token Authentification} 
   \label{token-auth}
   \cite{Ngan.2019}
@@ -638,8 +638,8 @@ einer Fehler-Nachricht an den Benutzer weitergeben.
 Der Sicherheitdienst der Vertraulichkeit macht bestimmte Teile der Anwendung nur für einen Teil der Benutzer sichtbar. 
 Das Beispiel verfügt über eine rollenbasierte Zugriffssteuerung. 
 Einem Benutzer wird dann eine entsprechende Rolle zugewiesen. verfügbare Rollen sind Administrator, Customer oder Guest.
-Ein Benutzer der über die Rolle \glqq Guest \glqq{} verfügt soll nur in der Lage sein, die Items auf der Website anzuschauen. 
-Ist ein Benutzer angemeldet, verfügt dieser über die Rolle \glqq Customer \glqq{} und darf Artikel einkaufen. 
+Ein Benutzer der über die Rolle \glqq Guest\grqq{} verfügt soll nur in der Lage sein, die Items auf der Website anzuschauen. 
+Ist ein Benutzer angemeldet, verfügt dieser über die Rolle \glqq Customer\grqq{} und darf Artikel einkaufen. 
 Ein Benutzer mit der Rolle Administrator kann zusätzlich auf eine spezielle Administrator Seite zugreifen, die ihm eine Übersicht über 
 alle Benutzerdaten liefert. 
 Den Zugriff kann man mittels der Grafik in \autoref*{access-desc} veranschaulicht werden.
@@ -692,14 +692,14 @@ in dem Reverse Proxy vorgenommen.
 \end{verbatim}
 
 Bei der Konfiguration des Reverse Proxy muss der Eingangsport und die Domain angegeben werden, über die eine eingehende Anfrage auf den Reverse Proxy trifft. 
-Mittels des \glqq location\glqq{}  Bocks wird angegeben auf welchen Server die Anfrage umgeleitet wird. 
+Mittels des \glqq location\grqq{}  Bocks wird angegeben auf welchen Server die Anfrage umgeleitet wird. 
 Durch Zertifikations Tools wie Certbot können direkt an dieser Stelle notwendige Informationen für eine HTTPS Verbindung festgelegt werden. 
 \\\\
 Das Sicherheitsziel der Zugriffsteuerung und der Vertraulichkeit sind damit weitestgehend abgedeckt. 
 Da in der Anwendung mit einer Datenbank gearbeitet wird, ist bei der Persistierung von Benutzerdaten und besonders Passwörtern ein weiterer Aspekt zu beachten. 
 In der Datenbank dürfen Passwörter nicht in Klartext abgelegt werden. 
 Bevor die Daten initial in der Datenbank abgelegt und gespeichert werden muss mittels Hash Algorithmus noch eine Verfremdung erfolgen. 
-Im Node.js Umfeld wird dafür Typischerweise das Tool \glqq BCrypt\glqq{}  benutzt. Mithilfe von BCrypt kann man Passwörter Hashen und zum späteren Zeitpunkt 
+Im Node.js Umfeld wird dafür Typischerweise das Tool \glqq BCrypt\grqq{}  benutzt. Mithilfe von BCrypt kann man Passwörter Hashen und zum späteren Zeitpunkt 
 mit einem Klartextwort vergleichen, um eine Authentifizierung durchzuführen. 
 Ein Benutzerobjekt wird in der Datenbank folgendermaßen gespeichert: 
 
@@ -724,7 +724,7 @@ von der Angabe auf der Website unterscheidet, wurde die Datei höchst wahrschein
 Auf der Beispielimplementierung eines Shops ist ein Software Produkt zum Download angeboten. 
 Bei Kauf des Produktes wird man auf eine Seite geleitet, die einen Download Link und die 
 dazugehörige Checksum bereitstellt. 
-Ist der Download erfolgt kann unter Windows eine Prüfung mithilfe des Tools \glqq certutil\glqq{}  erfolgen. 
+Ist der Download erfolgt kann unter Windows eine Prüfung mithilfe des Tools \glqq certutil\grqq{}  erfolgen. 
 
 \begin{verbatim}
   certutil -hashfile kali-linux-2020.4-installer-amd64.iso sha256
